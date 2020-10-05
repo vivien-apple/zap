@@ -1,0 +1,67 @@
+{{chip_header}}
+
+#ifndef __CHIPTOOL_CLUSTERS_COMMANDS_H__
+#define __CHIPTOOL_CLUSTERS_COMMANDS_H__
+
+#include "../../common/ModelCommand.h"
+
+/*
+ * List of enabled clusters
+ *
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+ * Cluster {{name}} {{asHex code 4}}
+{{/unless}}
+{{/all_user_clusters}}
+ */
+
+
+/*
+ * Start Cluster Specific Commands
+ */
+
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+
+/**********************************************************\
+|* Cluster {{name}} ({{asHex code 4}})
+\**********************************************************/
+
+{{#all_user_cluster_commands}}
+{{#if (isStrEqual clusterSide parent.side)}}
+{{#if (isStrEqual clusterName parent.name)}}
+class {{name}} : public ModelCommand
+{
+    {{name}}(const uint16_t clusterId) : ModelCommand("{{asCommandLineCommand name}}", clusterId) {}
+
+    size_t EncodeCommand(PacketBuffer * buffer, size_t bufferSize, uint16_t endPointId) override
+    {
+    }
+}
+
+{{/if}}
+{{/if}}
+{{/all_user_cluster_commands}}
+
+void registerCluster{{name}}(Commands & commands)
+{
+    const char * clusterName = "{{name}}";
+    const uint16_t clusterId = {{asHex code 4}}; 
+
+    commands_list clusterCommands = {
+        {{#all_user_cluster_commands}}
+        {{#if (isStrEqual clusterSide parent.side)}}
+        {{#if (isStrEqual clusterName parent.name)}}
+        make_unique<{{name}}>(clusterId),
+        {{/if}}
+        {{/if}}
+        {{/all_user_cluster_commands}}
+    };
+
+    commands.Register(clusterName, clusterCommands);
+}
+
+{{/unless}}
+{{/all_user_clusters}}
+
+#endif // __CHIPTOOL_CLUSTERS_COMMANDS_H__

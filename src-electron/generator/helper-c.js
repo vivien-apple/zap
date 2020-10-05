@@ -285,6 +285,33 @@ function asBytes(value, type) {
 }
 
 /**
+ * Given a string convert it into a command line method name
+ *
+ * @param {*} str
+ * @returns a dash delimited out string in lowercase
+ */
+function asCommandLineCommand(label) {
+  var ret = ''
+  if (label == null) return ret
+
+  for (var i = 0; i < label.length; i++) {
+    var ch = label.charAt(i)
+    var upch = ch.toUpperCase()
+    if (isDigit(ch)) {
+      ret += ch
+    } else if (ch == upch) {
+      // uppercase
+      if (i != 0) ret += '-'
+      ret += ch.toLowerCase()
+    } else {
+      // lowercase
+      ret += ch
+    }
+  }
+  return ret
+}
+
+/**
  * Given a string convert it into a camelCased string
  *
  * @param {*} str
@@ -369,6 +396,7 @@ exports.asType = asType
 exports.asSymbol = asSymbol
 exports.asBytes = asBytes
 exports.asDelimitedMacro = asDelimitedMacro
+exports.asCommandLineCommand = asCommandLineCommand
 exports.asOffset = asOffset
 exports.asUnderlyingType = asUnderlyingType
 exports.asCamelCased = asCamelCased

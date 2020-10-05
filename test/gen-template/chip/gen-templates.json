@@ -43,6 +43,11 @@
       "path": "command-id.zapt",
       "name": "ZCL Command ID define",
       "output": "command-id.h"
+    },
+    {
+      "path": "chip-tool-command.zapt",
+      "name": "Chip Tool Commands",
+      "output": "chip-tool-commands.h"
     }
   ]
 }
