@@ -113,6 +113,17 @@ function loadOverridable(overridePath) {
 }
 
 /**
+ * Function that loads the partials.
+ *
+ * @param {*} path
+ */
+function loadPartial(name, path) {
+  return fsPromise
+    .readFile(path, 'utf8')
+    .then((data) => handlebars.registerPartial(name, data))
+}
+
+/**
  * Function that loads the helpers.
  *
  * @param {*} path
@@ -146,3 +157,4 @@ function initializeGlobalHelpers() {
 
 exports.produceContent = produceContent
 exports.loadHelper = loadHelper
+exports.loadPartial = loadPartial
