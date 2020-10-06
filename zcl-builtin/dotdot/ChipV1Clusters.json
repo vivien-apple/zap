@@ -1,5 +1,5 @@
 {
-  "writeTime": "Mon Oct 05 2020 18:07:07 GMT+0200 (Central European Summer Time)",
+  "writeTime": "Tue Oct 06 2020 10:10:50 GMT+0200 (Central European Summer Time)",
   "featureLevel": 1,
   "creator": "zap",
   "keyValuePairs": [
@@ -43,7 +43,7 @@
           "mfgCode": null,
           "define": "Basic",
           "side": "server",
-          "enabled": 0,
+          "enabled": 1,
           "attributes": [
             {
               "name": "ZCLVersion",
@@ -228,7 +228,85 @@
               "reportableChange": 0
             }
           ],
-          "commands": []
+          "commands": [
+            {
+              "name": "ResetToFactoryDefaults",
+              "code": 0,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            }
+          ]
+        },
+        {
+          "name": "Identify",
+          "code": 3,
+          "mfgCode": null,
+          "define": "Identify",
+          "side": "client",
+          "enabled": 0,
+          "commands": [
+            {
+              "name": "IdentifyQueryResponse",
+              "code": 0,
+              "mfgCode": null,
+              "source": "client",
+              "incoming": 1,
+              "outgoing": 0
+            }
+          ],
+          "attributes": []
+        },
+        {
+          "name": "Identify",
+          "code": 3,
+          "mfgCode": null,
+          "define": "Identify",
+          "side": "server",
+          "enabled": 1,
+          "attributes": [
+            {
+              "name": "IdentifyTime",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
+          "commands": [
+            {
+              "name": "Identify",
+              "code": 0,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "IdentifyQuery",
+              "code": 1,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "TriggerEffect",
+              "code": 64,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            }
+          ]
         },
         {
           "name": "Scenes",
@@ -237,7 +315,6 @@
           "define": "Scenes",
           "side": "client",
           "enabled": 0,
-          "attributes": [],
           "commands": [
             {
               "name": "AddSceneResponse",
@@ -287,7 +364,8 @@
               "incoming": 1,
               "outgoing": 0
             }
-          ]
+          ],
+          "attributes": []
         },
         {
           "name": "Scenes",
@@ -296,78 +374,6 @@
           "define": "Scenes",
           "side": "server",
           "enabled": 1,
-          "attributes": [
-            {
-              "name": "SceneCount",
-              "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "CurrentScene",
-              "code": 1,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "CurrentGroup",
-              "code": 2,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "SceneValid",
-              "code": 3,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "NameSupport",
-              "code": 4,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            }
-          ],
           "commands": [
             {
               "name": "AddScene",
@@ -448,6 +454,218 @@
               "source": "server",
               "incoming": 0,
               "outgoing": 1
+            }
+          ],
+          "attributes": [
+            {
+              "name": "SceneCount",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "CurrentScene",
+              "code": 1,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "CurrentGroup",
+              "code": 2,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "SceneValid",
+              "code": 3,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "NameSupport",
+              "code": 4,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
+        },
+        {
+          "name": "OnOff",
+          "code": 6,
+          "mfgCode": null,
+          "define": "OnOff",
+          "side": "client",
+          "enabled": 0,
+          "commands": [],
+          "attributes": []
+        },
+        {
+          "name": "OnOff",
+          "code": 6,
+          "mfgCode": null,
+          "define": "OnOff",
+          "side": "server",
+          "enabled": 1,
+          "commands": [
+            {
+              "name": "Off",
+              "code": 0,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "On",
+              "code": 1,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "Toggle",
+              "code": 2,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "OffWithEffect",
+              "code": 64,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "OnWithRecallGlobalScene",
+              "code": 65,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "OnWithTimedOff",
+              "code": 66,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            }
+          ],
+          "attributes": [
+            {
+              "name": "OnOff",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "GlobalSceneControl",
+              "code": 16384,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x1",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "OnTime",
+              "code": 16385,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "OffWaitTime",
+              "code": 16386,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "StartUpOnOff",
+              "code": 16387,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             }
           ]
         },
@@ -669,144 +887,24 @@
           ]
         },
         {
-          "name": "OnOff",
-          "code": 6,
+          "name": "TemperatureMeasurement",
+          "code": 1026,
           "mfgCode": null,
-          "define": "OnOff",
+          "define": "TemperatureMeasurement",
           "side": "client",
           "enabled": 0,
-          "commands": [],
-          "attributes": []
+          "attributes": [],
+          "commands": []
         },
         {
-          "name": "OnOff",
-          "code": 6,
+          "name": "TemperatureMeasurement",
+          "code": 1026,
           "mfgCode": null,
-          "define": "OnOff",
+          "define": "TemperatureMeasurement",
           "side": "server",
           "enabled": 1,
-          "commands": [
-            {
-              "name": "Off",
-              "code": 0,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "On",
-              "code": 1,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "Toggle",
-              "code": 2,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "OffWithEffect",
-              "code": 64,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "OnWithRecallGlobalScene",
-              "code": 65,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "OnWithTimedOff",
-              "code": 66,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            }
-          ],
-          "attributes": [
-            {
-              "name": "OnOff",
-              "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "GlobalSceneControl",
-              "code": 16384,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x1",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "OnTime",
-              "code": 16385,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "OffWaitTime",
-              "code": 16386,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "StartUpOnOff",
-              "code": 16387,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            }
-          ]
+          "commands": [],
+          "attributes": []
         },
         {
           "name": "OccupancySensing",
@@ -814,7 +912,7 @@
           "mfgCode": null,
           "define": "OccupancySensing",
           "side": "client",
-          "enabled": 1,
+          "enabled": 0,
           "commands": [],
           "attributes": []
         },
@@ -872,129 +970,40 @@
           ]
         },
         {
-          "name": "ColorControl",
-          "code": 768,
-          "mfgCode": null,
-          "define": "ColorControl",
-          "side": "client",
-          "enabled": 0,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "ColorControl",
-          "code": 768,
-          "mfgCode": null,
-          "define": "ColorControl",
-          "side": "server",
-          "enabled": 1,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "Identify",
-          "code": 3,
-          "mfgCode": null,
-          "define": "Identify",
-          "side": "client",
-          "enabled": 0,
-          "commands": [
-            {
-              "name": "IdentifyQueryResponse",
-              "code": 0,
-              "mfgCode": null,
-              "source": "client",
-              "incoming": 1,
-              "outgoing": 0
-            }
-          ],
-          "attributes": []
-        },
-        {
-          "name": "Identify",
-          "code": 3,
-          "mfgCode": null,
-          "define": "Identify",
-          "side": "server",
-          "enabled": 1,
-          "commands": [
-            {
-              "name": "Identify",
-              "code": 0,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "IdentifyQuery",
-              "code": 1,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "TriggerEffect",
-              "code": 64,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            }
-          ],
-          "attributes": [
-            {
-              "name": "IdentifyTime",
-              "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            }
-          ]
-        },
-        {
-          "name": "DoorLock",
-          "code": 257,
-          "mfgCode": null,
-          "define": "DoorLock",
-          "side": "client",
-          "enabled": 0,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "DoorLock",
-          "code": 257,
-          "mfgCode": null,
-          "define": "DoorLock",
-          "side": "server",
-          "enabled": 1,
-          "commands": [],
-          "attributes": []
-        },
-        {
           "name": "BarrierControl",
           "code": 259,
           "mfgCode": null,
           "define": "BarrierControl",
           "side": "client",
           "enabled": 0,
-          "commands": [],
-          "attributes": []
+          "attributes": [],
+          "commands": []
         },
         {
           "name": "BarrierControl",
           "code": 259,
           "mfgCode": null,
           "define": "BarrierControl",
+          "side": "server",
+          "enabled": 1,
+          "commands": [],
+          "attributes": []
+        },
+        {
+          "name": "IASZone",
+          "code": 1280,
+          "mfgCode": null,
+          "define": "IASZone",
+          "side": "client",
+          "enabled": 0,
+          "commands": [],
+          "attributes": []
+        },
+        {
+          "name": "IASZone",
+          "code": 1280,
+          "mfgCode": null,
+          "define": "IASZone",
           "side": "server",
           "enabled": 1,
           "commands": [],
@@ -1007,32 +1016,6 @@
           "define": "OTAUpgrade",
           "side": "client",
           "enabled": 0,
-          "commands": [
-            {
-              "name": "QueryNextImageResponse",
-              "code": 2,
-              "mfgCode": null,
-              "source": "client",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "ImageBlockResponse",
-              "code": 5,
-              "mfgCode": null,
-              "source": "client",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "UpgradeEndResponse",
-              "code": 7,
-              "mfgCode": null,
-              "source": "client",
-              "incoming": 0,
-              "outgoing": 1
-            }
-          ],
           "attributes": [
             {
               "name": "UpgradeServerID",
@@ -1061,6 +1044,32 @@
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
+            }
+          ],
+          "commands": [
+            {
+              "name": "QueryNextImageResponse",
+              "code": 2,
+              "mfgCode": null,
+              "source": "client",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "ImageBlockResponse",
+              "code": 5,
+              "mfgCode": null,
+              "source": "client",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "UpgradeEndResponse",
+              "code": 7,
+              "mfgCode": null,
+              "source": "client",
+              "incoming": 0,
+              "outgoing": 1
             }
           ]
         },
@@ -1100,20 +1109,40 @@
           "attributes": []
         },
         {
-          "name": "IASZone",
-          "code": 1280,
+          "name": "DoorLock",
+          "code": 257,
           "mfgCode": null,
-          "define": "IASZone",
+          "define": "DoorLock",
           "side": "client",
           "enabled": 0,
-          "attributes": [],
-          "commands": []
+          "commands": [],
+          "attributes": []
         },
         {
-          "name": "IASZone",
-          "code": 1280,
+          "name": "DoorLock",
+          "code": 257,
           "mfgCode": null,
-          "define": "IASZone",
+          "define": "DoorLock",
+          "side": "server",
+          "enabled": 1,
+          "commands": [],
+          "attributes": []
+        },
+        {
+          "name": "ColorControl",
+          "code": 768,
+          "mfgCode": null,
+          "define": "ColorControl",
+          "side": "client",
+          "enabled": 0,
+          "commands": [],
+          "attributes": []
+        },
+        {
+          "name": "ColorControl",
+          "code": 768,
+          "mfgCode": null,
+          "define": "ColorControl",
           "side": "server",
           "enabled": 1,
           "commands": [],

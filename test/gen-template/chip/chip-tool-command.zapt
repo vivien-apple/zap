@@ -6,11 +6,11 @@
 #include "../../common/ModelCommand.h"
 
 /*
- * List of enabled clusters
+ * Clusters
  *
 {{#all_user_clusters}}
 {{#unless (isClient side) }}
- * Cluster {{name}} {{asHex code 4}}
+ * {{name}} {{asHex code 4}}
 {{/unless}}
 {{/all_user_clusters}}
  */
@@ -36,13 +36,37 @@ class {{name}} : public ModelCommand
 
     size_t EncodeCommand(PacketBuffer * buffer, size_t bufferSize, uint16_t endPointId) override
     {
+        {{#if (zcl_command_arguments_count this.id)}}
+        {{#zcl_command_arguments}}
+        {{asUnderlyingType type}} {{asCamelCased label}};
+        {{/zcl_command_arguments}}
+
+        return encode{{name}}Command(
+            buffer->Start(),
+            bufferSize(),
+            endPointId,
+            {{#zcl_command_arguments}}
+            {{#if end}}
+            {{asCamelCased label}}
+            {{else}}
+            {{asCamelCased label}},
+            {{/if}}
+            {{/zcl_command_arguments}}
+        );
+        {{else}}
+        return encode{{name}}Command(buffer->Start(), bufferSize, endPointId);
+        {{/if}}
     }
 }
 
 {{/if}}
 {{/if}}
 {{/all_user_cluster_commands}}
+{{/unless}}
+{{/all_user_clusters}}
 
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
 void registerCluster{{name}}(Commands & commands)
 {
     const char * clusterName = "{{name}}";
@@ -63,5 +87,17 @@ void registerCluster{{name}}(Commands & commands)
 
 {{/unless}}
 {{/all_user_clusters}}
+
+/*
+ * Register all clusters commands
+ */
+void registerClusters()
+{
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+    registerCluster{{name}}();
+{{/unless}}
+{{/all_user_clusters}}
+}
 
 #endif // __CHIPTOOL_CLUSTERS_COMMANDS_H__

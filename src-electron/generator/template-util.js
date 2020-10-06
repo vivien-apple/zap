@@ -41,6 +41,7 @@ function collectBlocks(resultArray, options, context) {
       parent: context,
       index: index++,
       count: resultArray.length,
+      end: index == resultArray.length,
       ...element,
     }
     var block = options.fn(newContext)
