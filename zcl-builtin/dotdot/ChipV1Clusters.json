@@ -1,11 +1,11 @@
 {
-  "writeTime": "Tue Oct 06 2020 10:10:50 GMT+0200 (Central European Summer Time)",
+  "writeTime": "Tue Oct 06 2020 12:55:03 GMT+0200 (Central European Summer Time)",
   "featureLevel": 1,
   "creator": "zap",
   "keyValuePairs": [
     {
       "key": "filePath",
-      "value": "/Users/vivien/Code/ZAP_output/ChipV1Clusters"
+      "value": "/Users/vivien/Code/AppleOpenSource/zap/zcl-builtin/dotdot/ChipV1Clusters.json"
     }
   ],
   "package": [
@@ -23,8 +23,8 @@
   "endpointTypes": [
     {
       "name": "Anonymous Endpoint Type",
-      "deviceTypeName": "onofflight",
-      "deviceTypeCode": "0x0100",
+      "deviceTypeName": "custom",
+      "deviceTypeCode": "0x0000",
       "deviceTypeProfileId": "0x0000",
       "clusters": [
         {
@@ -35,7 +35,22 @@
           "side": "client",
           "enabled": 0,
           "commands": [],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
         },
         {
           "name": "Basic",
@@ -44,6 +59,16 @@
           "define": "Basic",
           "side": "server",
           "enabled": 1,
+          "commands": [
+            {
+              "name": "ResetToFactoryDefaults",
+              "code": 0,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            }
+          ],
           "attributes": [
             {
               "name": "ZCLVersion",
@@ -226,16 +251,20 @@
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
-            }
-          ],
-          "commands": [
+            },
             {
-              "name": "ResetToFactoryDefaults",
-              "code": 0,
+              "name": "ClusterRevision",
+              "code": 65533,
               "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             }
           ]
         },
@@ -246,6 +275,22 @@
           "define": "Identify",
           "side": "client",
           "enabled": 0,
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
           "commands": [
             {
               "name": "IdentifyQueryResponse",
@@ -255,8 +300,7 @@
               "incoming": 1,
               "outgoing": 0
             }
-          ],
-          "attributes": []
+          ]
         },
         {
           "name": "Identify",
@@ -265,22 +309,6 @@
           "define": "Identify",
           "side": "server",
           "enabled": 1,
-          "attributes": [
-            {
-              "name": "IdentifyTime",
-              "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x0",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            }
-          ],
           "commands": [
             {
               "name": "Identify",
@@ -297,14 +325,36 @@
               "source": "server",
               "incoming": 0,
               "outgoing": 1
+            }
+          ],
+          "attributes": [
+            {
+              "name": "IdentifyTime",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             },
             {
-              "name": "TriggerEffect",
-              "code": 64,
+              "name": "ClusterRevision",
+              "code": 65533,
               "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             }
           ]
         },
@@ -365,7 +415,22 @@
               "outgoing": 0
             }
           ],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
         },
         {
           "name": "Scenes",
@@ -526,6 +591,20 @@
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             }
           ]
         },
@@ -536,8 +615,23 @@
           "define": "OnOff",
           "side": "client",
           "enabled": 0,
-          "commands": [],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
+          "commands": []
         },
         {
           "name": "OnOff",
@@ -546,6 +640,36 @@
           "define": "OnOff",
           "side": "server",
           "enabled": 1,
+          "attributes": [
+            {
+              "name": "OnOff",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
           "commands": [
             {
               "name": "Off",
@@ -570,64 +694,59 @@
               "source": "server",
               "incoming": 0,
               "outgoing": 1
-            },
-            {
-              "name": "OffWithEffect",
-              "code": 64,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "OnWithRecallGlobalScene",
-              "code": 65,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "OnWithTimedOff",
-              "code": 66,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 0,
-              "outgoing": 1
             }
-          ],
+          ]
+        },
+        {
+          "name": "Level",
+          "code": 8,
+          "mfgCode": null,
+          "define": "Level",
+          "side": "client",
+          "enabled": 0,
           "attributes": [
             {
-              "name": "OnOff",
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
+          "commands": []
+        },
+        {
+          "name": "Level",
+          "code": 8,
+          "mfgCode": null,
+          "define": "Level",
+          "side": "server",
+          "enabled": 1,
+          "attributes": [
+            {
+              "name": "CurrentLevel",
               "code": 0,
               "mfgCode": null,
               "included": 1,
               "storageOption": "RAM",
               "singleton": 0,
               "bounded": 0,
-              "defaultValue": "0x0",
+              "defaultValue": "0x255",
               "reportable": 0,
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
             },
             {
-              "name": "GlobalSceneControl",
-              "code": 16384,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x1",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "OnTime",
-              "code": 16385,
+              "name": "RemainingTime",
+              "code": 1,
               "mfgCode": null,
               "included": 1,
               "storageOption": "RAM",
@@ -640,8 +759,8 @@
               "reportableChange": 0
             },
             {
-              "name": "OffWaitTime",
-              "code": 16386,
+              "name": "Options",
+              "code": 15,
               "mfgCode": null,
               "included": 1,
               "storageOption": "RAM",
@@ -654,18 +773,84 @@
               "reportableChange": 0
             },
             {
-              "name": "StartUpOnOff",
-              "code": 16387,
+              "name": "ClusterRevision",
+              "code": 65533,
               "mfgCode": null,
               "included": 1,
               "storageOption": "RAM",
               "singleton": 0,
               "bounded": 0,
-              "defaultValue": "",
+              "defaultValue": "0xREVISION()",
               "reportable": 0,
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
+            }
+          ],
+          "commands": [
+            {
+              "name": "MoveToLevel",
+              "code": 0,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "Move",
+              "code": 1,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "Step",
+              "code": 2,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "Stop",
+              "code": 3,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "MoveToLevelWithOnOff",
+              "code": 4,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "MoveWithOnOff",
+              "code": 5,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "StepWithOnOff",
+              "code": 6,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "StopWithOnOff",
+              "code": 7,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
             }
           ]
         },
@@ -710,7 +895,22 @@
               "outgoing": 0
             }
           ],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
         },
         {
           "name": "Groups",
@@ -783,29 +983,150 @@
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             }
           ]
         },
         {
-          "name": "Level",
-          "code": 8,
+          "name": "TemperatureMeasurement",
+          "code": 1026,
           "mfgCode": null,
-          "define": "Level",
+          "define": "TemperatureMeasurement",
           "side": "client",
           "enabled": 0,
-          "commands": [],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
+          "commands": []
         },
         {
-          "name": "Level",
-          "code": 8,
+          "name": "TemperatureMeasurement",
+          "code": 1026,
           "mfgCode": null,
-          "define": "Level",
+          "define": "TemperatureMeasurement",
+          "side": "server",
+          "enabled": 1,
+          "commands": [],
+          "attributes": [
+            {
+              "name": "MeasuredValue",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x-32768",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "MinMeasuredValue",
+              "code": 1,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x-32768",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "MaxMeasuredValue",
+              "code": 2,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x-32768",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
+        },
+        {
+          "name": "ColorControl",
+          "code": 768,
+          "mfgCode": null,
+          "define": "ColorControl",
+          "side": "client",
+          "enabled": 0,
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
+          "commands": []
+        },
+        {
+          "name": "ColorControl",
+          "code": 768,
+          "mfgCode": null,
+          "define": "ColorControl",
           "side": "server",
           "enabled": 1,
           "commands": [
             {
-              "name": "MoveToLevel",
+              "name": "MoveToHue",
               "code": 0,
               "mfgCode": null,
               "source": "server",
@@ -813,7 +1134,7 @@
               "outgoing": 1
             },
             {
-              "name": "Move",
+              "name": "MoveHue",
               "code": 1,
               "mfgCode": null,
               "source": "server",
@@ -821,7 +1142,7 @@
               "outgoing": 1
             },
             {
-              "name": "Step",
+              "name": "StepHue",
               "code": 2,
               "mfgCode": null,
               "source": "server",
@@ -829,7 +1150,7 @@
               "outgoing": 1
             },
             {
-              "name": "Stop",
+              "name": "MoveToSaturation",
               "code": 3,
               "mfgCode": null,
               "source": "server",
@@ -837,7 +1158,7 @@
               "outgoing": 1
             },
             {
-              "name": "MoveToLevelWithOnOff",
+              "name": "MoveSaturation",
               "code": 4,
               "mfgCode": null,
               "source": "server",
@@ -845,7 +1166,7 @@
               "outgoing": 1
             },
             {
-              "name": "MoveWithOnOff",
+              "name": "StepSaturation",
               "code": 5,
               "mfgCode": null,
               "source": "server",
@@ -853,7 +1174,7 @@
               "outgoing": 1
             },
             {
-              "name": "StepWithOnOff",
+              "name": "MoveToHueAndSaturation",
               "code": 6,
               "mfgCode": null,
               "source": "server",
@@ -861,8 +1182,56 @@
               "outgoing": 1
             },
             {
-              "name": "StopWithOnOff",
+              "name": "MoveToColor",
               "code": 7,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "MoveColor",
+              "code": 8,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "StepColor",
+              "code": 9,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "MoveToColorTemperature",
+              "code": 10,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "StopMoveStep",
+              "code": 71,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "MoveColorTemperature",
+              "code": 75,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "StepColorTemperature",
+              "code": 76,
               "mfgCode": null,
               "source": "server",
               "incoming": 0,
@@ -871,169 +1240,8 @@
           ],
           "attributes": [
             {
-              "name": "CurrentLevel",
+              "name": "CurrentHue",
               "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x255",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            }
-          ]
-        },
-        {
-          "name": "TemperatureMeasurement",
-          "code": 1026,
-          "mfgCode": null,
-          "define": "TemperatureMeasurement",
-          "side": "client",
-          "enabled": 0,
-          "attributes": [],
-          "commands": []
-        },
-        {
-          "name": "TemperatureMeasurement",
-          "code": 1026,
-          "mfgCode": null,
-          "define": "TemperatureMeasurement",
-          "side": "server",
-          "enabled": 1,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "OccupancySensing",
-          "code": 1030,
-          "mfgCode": null,
-          "define": "OccupancySensing",
-          "side": "client",
-          "enabled": 0,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "OccupancySensing",
-          "code": 1030,
-          "mfgCode": null,
-          "define": "OccupancySensing",
-          "side": "server",
-          "enabled": 0,
-          "commands": [],
-          "attributes": [
-            {
-              "name": "Occupancy",
-              "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "OccupancySensorType",
-              "code": 1,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0xMS",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "OccupancySensorTypeBitmap",
-              "code": 2,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            }
-          ]
-        },
-        {
-          "name": "BarrierControl",
-          "code": 259,
-          "mfgCode": null,
-          "define": "BarrierControl",
-          "side": "client",
-          "enabled": 0,
-          "attributes": [],
-          "commands": []
-        },
-        {
-          "name": "BarrierControl",
-          "code": 259,
-          "mfgCode": null,
-          "define": "BarrierControl",
-          "side": "server",
-          "enabled": 1,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "IASZone",
-          "code": 1280,
-          "mfgCode": null,
-          "define": "IASZone",
-          "side": "client",
-          "enabled": 0,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "IASZone",
-          "code": 1280,
-          "mfgCode": null,
-          "define": "IASZone",
-          "side": "server",
-          "enabled": 1,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "OTAUpgrade",
-          "code": 25,
-          "mfgCode": null,
-          "define": "OTAUpgrade",
-          "side": "client",
-          "enabled": 0,
-          "attributes": [
-            {
-              "name": "UpgradeServerID",
-              "code": 0,
-              "mfgCode": null,
-              "included": 1,
-              "storageOption": "RAM",
-              "singleton": 0,
-              "bounded": 0,
-              "defaultValue": "0x18446744073709551615",
-              "reportable": 0,
-              "minInterval": 0,
-              "maxInterval": 65344,
-              "reportableChange": 0
-            },
-            {
-              "name": "ImageUpgradeStatus",
-              "code": 6,
               "mfgCode": null,
               "included": 1,
               "storageOption": "RAM",
@@ -1044,79 +1252,299 @@
               "minInterval": 0,
               "maxInterval": 65344,
               "reportableChange": 0
+            },
+            {
+              "name": "CurrentSaturation",
+              "code": 1,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "CurrentX",
+              "code": 3,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x24939",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "CurrentY",
+              "code": 4,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x24701",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ColorMode",
+              "code": 8,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x1",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "Options",
+              "code": 15,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "EnhancedColorMode",
+              "code": 16385,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x1",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ColorCapabilities",
+              "code": 16394,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0x0",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "NumberOfPrimaries",
+              "code": 16,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
+        },
+        {
+          "name": "BarrierControl",
+          "code": 259,
+          "mfgCode": null,
+          "define": "BarrierControl",
+          "side": "client",
+          "enabled": 0,
+          "commands": [],
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
+        },
+        {
+          "name": "BarrierControl",
+          "code": 259,
+          "mfgCode": null,
+          "define": "BarrierControl",
+          "side": "server",
+          "enabled": 1,
+          "attributes": [
+            {
+              "name": "MovingState",
+              "code": 1,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "SafetyStatus",
+              "code": 2,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "Capabilities",
+              "code": 3,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "BarrierPosition",
+              "code": 10,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
             }
           ],
           "commands": [
             {
-              "name": "QueryNextImageResponse",
-              "code": 2,
+              "name": "GoToPercent",
+              "code": 0,
               "mfgCode": null,
-              "source": "client",
+              "source": "server",
               "incoming": 0,
               "outgoing": 1
             },
             {
-              "name": "ImageBlockResponse",
-              "code": 5,
+              "name": "Stop",
+              "code": 1,
               "mfgCode": null,
-              "source": "client",
-              "incoming": 0,
-              "outgoing": 1
-            },
-            {
-              "name": "UpgradeEndResponse",
-              "code": 7,
-              "mfgCode": null,
-              "source": "client",
+              "source": "server",
               "incoming": 0,
               "outgoing": 1
             }
           ]
         },
         {
-          "name": "OTAUpgrade",
-          "code": 25,
+          "name": "DoorLock",
+          "code": 257,
           "mfgCode": null,
-          "define": "OTAUpgrade",
-          "side": "server",
+          "define": "DoorLock",
+          "side": "client",
           "enabled": 0,
           "commands": [
             {
-              "name": "QueryNextImageRequest",
+              "name": "LockDoorResponse",
+              "code": 0,
+              "mfgCode": null,
+              "source": "client",
+              "incoming": 1,
+              "outgoing": 0
+            },
+            {
+              "name": "UnlockDoorResponse",
               "code": 1,
               "mfgCode": null,
-              "source": "server",
-              "incoming": 1,
-              "outgoing": 0
-            },
-            {
-              "name": "ImageBlockRequest",
-              "code": 3,
-              "mfgCode": null,
-              "source": "server",
-              "incoming": 1,
-              "outgoing": 0
-            },
-            {
-              "name": "UpgradeEndRequest",
-              "code": 6,
-              "mfgCode": null,
-              "source": "server",
+              "source": "client",
               "incoming": 1,
               "outgoing": 0
             }
           ],
-          "attributes": []
-        },
-        {
-          "name": "DoorLock",
-          "code": 257,
-          "mfgCode": null,
-          "define": "DoorLock",
-          "side": "client",
-          "enabled": 0,
-          "commands": [],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ]
         },
         {
           "name": "DoorLock",
@@ -1125,28 +1553,82 @@
           "define": "DoorLock",
           "side": "server",
           "enabled": 1,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "ColorControl",
-          "code": 768,
-          "mfgCode": null,
-          "define": "ColorControl",
-          "side": "client",
-          "enabled": 0,
-          "commands": [],
-          "attributes": []
-        },
-        {
-          "name": "ColorControl",
-          "code": 768,
-          "mfgCode": null,
-          "define": "ColorControl",
-          "side": "server",
-          "enabled": 1,
-          "commands": [],
-          "attributes": []
+          "attributes": [
+            {
+              "name": "LockState",
+              "code": 0,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "LockType",
+              "code": 1,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ActuatorEnabled",
+              "code": 2,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            },
+            {
+              "name": "ClusterRevision",
+              "code": 65533,
+              "mfgCode": null,
+              "included": 1,
+              "storageOption": "RAM",
+              "singleton": 0,
+              "bounded": 0,
+              "defaultValue": "0xREVISION()",
+              "reportable": 0,
+              "minInterval": 0,
+              "maxInterval": 65344,
+              "reportableChange": 0
+            }
+          ],
+          "commands": [
+            {
+              "name": "LockDoor",
+              "code": 0,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            },
+            {
+              "name": "UnlockDoor",
+              "code": 1,
+              "mfgCode": null,
+              "source": "server",
+              "incoming": 0,
+              "outgoing": 1
+            }
+          ]
         }
       ]
     }

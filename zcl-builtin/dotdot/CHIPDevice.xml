@@ -735,6 +735,98 @@ applicable to this document can be found in the LICENSE.md file.
   </deviceType>
 
 <deviceType>
+    <name>custom</name>
+    <domain>CHIP</domain>
+    <typeName>Custom...</typeName>
+    <deviceId revision="1" editable="false">0x0000</deviceId>
+    <clusters lockOthers="true">
+      <include cluster="BarrierControl" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireCommand>GoToPercent</requireCommand>
+        <requireCommand>Stop</requireCommand>
+      </include>
+      <include cluster="Basic" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>ZCLVersion</requireAttribute>
+        <requireAttribute>ApplicationVersion</requireAttribute>
+        <requireAttribute>StackVersion</requireAttribute>
+        <requireAttribute>HWVersion</requireAttribute>
+        <requireAttribute>ManufacturerName</requireAttribute>
+        <requireAttribute>ModelIdentifier</requireAttribute>
+        <requireAttribute>DateCode</requireAttribute>
+        <requireAttribute>PowerSource</requireAttribute>
+        <requireAttribute>GenericDevice-Class</requireAttribute>
+        <requireAttribute>GenericDevice-Type</requireAttribute>
+        <requireAttribute>ProductCode</requireAttribute>
+        <requireAttribute>ProductURL</requireAttribute>
+        <requireAttribute>SWBuildID</requireAttribute>
+        <requireCommand>ResetToFactoryDefaults</requireCommand>
+      </include>
+      <include cluster="ColorControl" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>CurrentHue</requireAttribute>
+        <requireAttribute>CurrentSaturation</requireAttribute>
+        <requireAttribute>RemainingTime</requireAttribute>
+        <requireAttribute>CurrentX</requireAttribute>
+        <requireAttribute>CurrentY</requireAttribute>
+        <requireAttribute>ColorMode</requireAttribute>
+        <requireAttribute>Options</requireAttribute>
+        <requireAttribute>NumberOfPrimaries</requireAttribute>
+        <requireCommand>MoveToHue</requireCommand>
+        <requireCommand>MoveHue</requireCommand>
+        <requireCommand>StepHue</requireCommand>
+        <requireCommand>MoveToSaturation</requireCommand>
+        <requireCommand>MoveSaturation</requireCommand>
+        <requireCommand>StepSaturation</requireCommand>
+        <requireCommand>MoveToHueAndSaturation</requireCommand>
+        <requireCommand>MoveToColor</requireCommand>
+        <requireCommand>MoveColor</requireCommand>
+        <requireCommand>StepColor</requireCommand>
+        <requireCommand>MoveToColorTemperature</requireCommand>
+        <requireCommand>MoveColorTemperature</requireCommand>
+        <requireCommand>StepColorTemperature</requireCommand>
+        <requireCommand>StopMoveStep</requireCommand>
+      </include>
+      <include cluster="DoorLock" client="false" server="true" clientLocked="true" serverLocked="true"/>
+      <include cluster="Groups" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>NameSupport</requireAttribute>
+        <requireCommand>AddGroup</requireCommand>
+        <requireCommand>ViewGroup</requireCommand>
+        <requireCommand>GetGroupMembership</requireCommand>
+        <requireCommand>RemoveGroup</requireCommand>
+        <requireCommand>RemoveAllGroups</requireCommand>
+        <requireCommand>AddGroupIfIdentifying</requireCommand>
+      </include>
+      <include cluster="Identify" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>IdentifyTime</requireAttribute>
+        <requireCommand>Identify</requireCommand>
+        <requireCommand>IdentifyQuery</requireCommand>
+      </include>
+      <include cluster="Level" client="false" server="true" clientLocked="true" serverLocked="true"/>
+      <include cluster="OnOff" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>OnOff</requireAttribute>
+        <requireCommand>Off</requireCommand>
+        <requireCommand>On</requireCommand>
+        <requireCommand>Toggle</requireCommand>
+      </include>
+      <include cluster="Scenes" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>SceneCount</requireAttribute>
+        <requireAttribute>CurrentScene</requireAttribute>
+        <requireAttribute>CurrentGroup</requireAttribute>
+        <requireAttribute>SceneValid</requireAttribute>
+        <requireAttribute>NameSupport</requireAttribute>
+        <requireCommand>AddScene</requireCommand>
+        <requireCommand>ViewScene</requireCommand>
+        <requireCommand>RemoveScene</requireCommand>
+        <requireCommand>RemoveAllScenes</requireCommand>
+        <requireCommand>StoreScene</requireCommand>
+        <requireCommand>RecallScene</requireCommand>
+        <requireCommand>GetSceneMembership</requireCommand>
+        <requireCommand>EnhancedAddScene</requireCommand>
+        <requireCommand>EnhancedViewScene</requireCommand>
+        <requireCommand>CopyScene</requireCommand>
+      </include>
+      <include cluster="TemperatureMeasurement" client="false" server="true" clientLocked="false" serverLocked="true"/>
+    </clusters>
+  </deviceType>
+<deviceType>
     <name>onofflight</name>
     <domain>CHIP</domain>
     <typeName>On/Off Light</typeName>
