@@ -1,0 +1,72 @@
+{{chip_header}}
+
+#ifndef CHIP_ZCL_ZPRO_CODEC_API_H
+#define CHIP_ZCL_ZPRO_CODEC_API_H
+
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+{{pad '/*' 78 '-'}}*\
+{{pad "| Cluster Name" 70 ' '}}{{pad "|   ID" 9 ' '}}|
+{{pad "|" 70 '-'}}{{pad "+" 9 '-'}}|
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+{{pad (concat "| " name) 70  " "}}{{pad (concat "| " (asHex code 4)) 9 ' '}}|
+{{/unless}}
+{{/all_user_clusters}}
+{{pad '\*' 78 '-'}}*/
+
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+{{pad '/*' 78 '-'}}*\
+{{pad (concat "| Cluster " name) 79 ' '}}|
+{{pad "|" 79 '-'}}|
+{{pad "| Commands: " 79 ' '}}|
+{{pad "|" 79 ' '}}|
+{{#all_user_cluster_commands}}
+{{#if (isStrEqual clusterSide parent.side)}}
+{{#if (isStrEqual clusterName parent.name)}}
+{{pad (concat "| * " name) 79 ' '}}|
+{{/if}}
+{{/if}}
+{{/all_user_cluster_commands}}
+{{pad "|" 79 ' '}}|
+{{pad "| Attributes: " 79 ' '}}|
+{{pad "|" 79 ' '}}|
+{{#user_all_attributes}}
+{{#if (isNumberEqual clusterCode parent.code)}}
+{{pad (concat "| * " name) 79 ' '}}|
+{{/if}}
+{{/user_all_attributes}}
+{{pad '\*' 78 '-'}}*/
+
+{{#all_user_cluster_commands}}
+{{#if (isStrEqual clusterSide parent.side)}}
+{{#if (isStrEqual clusterName parent.name)}}
+/** @brief Encode an {{asCommandLineCommand name}} command for {{clusterName}} server into buffer including the APS frame
+ */
+uint16_t encode{{clusterName}}{{asType name}}Command(uint8_t * buffer, uint16_t buf_length, uint8_t destination_endpoint{{#zcl_command_arguments}}, {{asNativeType type}} {{asCamelCased label}}{{/zcl_command_arguments}});
+
+{{/if}}
+{{/if}}
+{{/all_user_cluster_commands}}
+{{#user_all_attributes}}
+{{#if (isNumberEqual clusterCode parent.code)}}
+/** @brief Encode a read command for the {{asCommandLineCommand name}} attribute for {{clusterName}} server into buffer including the APS frame
+ */
+uint16_t encodeRead{{parent.name}}{{asType name}}Command(uint8_t * buffer, uint16_t buf_length, uint8_t destination_endpoint);
+
+{{/if}}
+{{/user_all_attributes}}
+{{/unless}}
+{{/all_user_clusters}}
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
+
+#endif // CHIP_ZCL_ZPRO_CODEC_API_H

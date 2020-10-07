@@ -119,7 +119,7 @@ function asNativeType(type) {
     case 'SSceneName':
       return 'char *'
     case 'SExtensionFieldSetList':
-      return '/* FIXME - Not supported: ' + type + ' */ void *'
+      return 'void *'
       break
     default:
       throw new Error('UnknownType: ' + type)

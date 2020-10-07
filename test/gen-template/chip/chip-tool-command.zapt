@@ -43,25 +43,6 @@
 {{#all_user_cluster_commands}}
 {{#if (isStrEqual clusterSide parent.side)}}
 {{#if (isStrEqual clusterName parent.name)}}
-size_t encode{{clusterName}}{{asType name}}Command(uint8_t * buffer, uint16_t bufferSize, uint16_t endPointId{{#zcl_command_arguments}}, {{asNativeType type}} {{asCamelCased label}}{{/zcl_command_arguments}})
-{
-    return 0;
-}
-{{/if}}
-{{/if}}
-{{/all_user_cluster_commands}}
-{{#user_all_attributes}}
-{{#if (isNumberEqual clusterCode parent.code)}}
-size_t encodeRead{{parent.name}}{{asType name}}Command(uint8_t * buffer, uint16_t bufferSize, uint16_t endPointId)
-{
-    return 0;
-}
-{{/if}}
-{{/user_all_attributes}}
-
-{{#all_user_cluster_commands}}
-{{#if (isStrEqual clusterSide parent.side)}}
-{{#if (isStrEqual clusterName parent.name)}}
 class {{clusterName}}{{asType name}} : public ModelCommand
 {
 public:
@@ -77,6 +58,7 @@ public:
         {{else if (isStrEqual (asNativeType type) "char *")}}
         AddArgument("{{asCamelCased label}}", &m{{label}});
         {{else}}
+        // FIXME - {{type}} is not supported.
         AddArgument("{{asCamelCased label}}", &m{{label}});
         {{/if}}
         {{/zcl_command_arguments}}
@@ -118,7 +100,9 @@ public:
         ChipLogProgress(chipTool, "  {{asCamelCased label}} len: 0x%02x", msgLen);
 
         {{else}}
+        // FIXME - {{type}} is not supported.
         {{asNativeType type}} {{asCamelCased label}};
+
         {{/if}}
         {{/zcl_command_arguments}}
         return true;

@@ -48,6 +48,16 @@
       "path": "chip-tool-command.zapt",
       "name": "Chip Tool Commands",
       "output": "chip-tool-commands.h"
+    },
+    {
+      "path": "encoder.zapt",
+      "name": "Encoder commands declaration",
+      "output": "encoder.h"
+    },
+    {
+      "path": "encoder-src.zapt",
+      "name": "Encoder commands definition",
+      "output": "encoder-src.cpp"
     }
   ]
 }
