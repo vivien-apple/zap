@@ -56,17 +56,23 @@ function asCommandLineCommand(label) {
   var ret = ''
   if (label == null) return ret
 
-  for (var i = 0; i < label.length; i++) {
-    var ch = label.charAt(i)
-    var upch = ch.toUpperCase()
+  let uppercase = false
+  for (let i = 0; i < label.length; i++) {
+    let ch = label.charAt(i)
+    let upch = ch.toUpperCase()
     if (isDigit(ch)) {
       ret += ch
-    } else if (ch == upch) {
+    } else if (ch == '-') {
+    } else if (ch == upch && !uppercase) {
       // uppercase
       if (i != 0) ret += '-'
       ret += ch.toLowerCase()
+      uppercase = true
+    } else if (ch == upch && uppercase) {
+      ret += ch.toLowerCase()
     } else {
       // lowercase
+      uppercase = false
       ret += ch
     }
   }
@@ -75,29 +81,45 @@ function asCommandLineCommand(label) {
 
 function asNativeType(type) {
   switch (type) {
+    case 'int8':
+      return 'int8_t'
     case 'int16':
       return 'int16_t'
     case 'uint8':
     case 'CCMoveMode':
     case 'CCColorOptions':
+    case 'cccoloroptions':
     case 'CCStepMode':
     case 'CCDirection':
     case 'LevelOptions':
+    case 'leveloptions':
     case 'MoveStepMode':
     case 'zclStatus':
     case 'enum8':
+    case 'map8':
+    case 'ProfileIntervalPeriod':
       return 'uint8_t'
     case 'uint16':
     case 'SGroupId':
+    case 'sgroupid':
+    case 'clusterId':
+    case 'attribId':
     case 'CCMinMiredsField':
     case 'CCMaxMiredsField':
+    case 'map16':
       return 'uint16_t'
+    case 'uint32':
+    case 'UTC':
+    case 'date':
+      return 'uin32t_t'
+    case 'bool':
+      return 'bool'
     case 'octstr':
     case 'string':
     case 'SSceneName':
       return 'char *'
     case 'SExtensionFieldSetList':
-      return '// FIXME - Not supported: ' + type
+      return '/* FIXME - Not supported: ' + type + ' */ void *'
       break
     default:
       throw new Error('UnknownType: ' + type)
@@ -118,6 +140,10 @@ function concat() {
   return str
 }
 
+function isNumberEqual(num1, num2) {
+  return num1 == num2
+}
+
 // WARNING! WARNING! WARNING! WARNING! WARNING! WARNING!
 //
 // Note: these exports are public API. Templates that might have been created in the past and are
@@ -127,3 +153,4 @@ exports.asCommandLineCommand = asCommandLineCommand
 exports.asNativeType = asNativeType
 exports.concat = concat
 exports.pad = pad
+exports.isNumberEqual = isNumberEqual
