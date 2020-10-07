@@ -46,7 +46,7 @@
 class {{clusterName}}{{asType name}} : public ModelCommand
 {
 public:
-    {{clusterName}}{{asType name}}(const uint16_t clusterId) : ModelCommand("{{asCommandLineCommand name}}", clusterId)
+    {{clusterName}}{{asType name}}(uint16_t clusterId) : ModelCommand("{{asCommandLineCommand name}}", clusterId)
     {
         {{#zcl_command_arguments}}
         {{#if (isStrEqual (asNativeType type) "int16_t")}}

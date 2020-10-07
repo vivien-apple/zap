@@ -98,6 +98,17 @@ function asNativeType(type) {
     case 'enum8':
     case 'map8':
     case 'ProfileIntervalPeriod':
+    case 'DrlkHolidayScheduleID':
+    case 'DrlkWeekDayScheduleID':
+    case 'DrlkYearDayScheduleID':
+    case 'DrlkOperMode':
+    case 'DrlkSettableUserStatus':
+    case 'DrlkUserType':
+    case 'DrlkDaysMask':
+    case 'DrlkPassFailStatus':
+    case 'DrlkOperEventSource':
+    case 'DrlkUserStatus':
+    case 'DrlkSetCodeStatus':
       return 'uint8_t'
     case 'uint16':
     case 'SGroupId':
@@ -107,11 +118,14 @@ function asNativeType(type) {
     case 'CCMinMiredsField':
     case 'CCMaxMiredsField':
     case 'map16':
+    case 'DrlkPINUserID':
+    case 'DrlkRFIDUserID':
+    case 'DrlkTotalUserID':
       return 'uint16_t'
     case 'uint32':
     case 'UTC':
     case 'date':
-      return 'uin32t_t'
+      return 'uin32_t'
     case 'bool':
       return 'bool'
     case 'octstr':
