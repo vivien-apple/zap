@@ -62,6 +62,12 @@ function produceContent(db, sessionId, singlePkg) {
   )
 }
 
+function loadPartial(name, path) {
+  return fsPromise.readFile(path, 'utf8').then((data) => {
+    handlebars.registerPartial(name, data)
+  })
+}
+
 function loadHelper(path) {
   var helpers = require(path)
   for (const singleHelper in helpers) {
@@ -89,3 +95,4 @@ function initializeGlobalHelpers() {
 
 exports.produceContent = produceContent
 exports.loadHelper = loadHelper
+exports.loadPartial = loadPartial

@@ -166,6 +166,23 @@ function recordTemplatesPackage(context) {
         })
       }
 
+      // Deal with partials
+      if (context.templateData.partials != null) {
+        context.templateData.partials.forEach((partial) => {
+          var partialPath = path.join(path.dirname(context.path), partial.path)
+          promises.push(
+            queryPackage.insertPathCrc(
+              context.db,
+              partialPath,
+              null,
+              dbEnum.packageType.genPartial,
+              context.packageId,
+              partial.name
+            )
+          )
+        })
+      }
+
       return Promise.all(promises)
     })
     .then(() => context)
@@ -215,6 +232,7 @@ function generateAllTemplates(genResult, pkg, generateOnly = null) {
     .then((packages) => {
       var generationPromises = []
       var helperPromises = []
+      var partialPromises = []
       packages.forEach((singlePkg) => {
         if (singlePkg.type == dbEnum.packageType.genSingleTemplate) {
           if (generateOnly == null)
@@ -225,12 +243,16 @@ function generateAllTemplates(genResult, pkg, generateOnly = null) {
             generationPromises.push(
               generateSingleTemplate(genResult, singlePkg)
             )
+        } else if (singlePkg.type == dbEnum.packageType.genPartial) {
+          partialPromises.push(
+            templateEngine.loadPartial(singlePkg.version, singlePkg.path)
+          )
         } else if (singlePkg.type == dbEnum.packageType.genHelper) {
           helperPromises.push(templateEngine.loadHelper(singlePkg.path))
         }
       })
-      return Promise.all(helperPromises).then(() =>
-        Promise.all(generationPromises)
+      return Promise.all(partialPromises).then(() =>
+        Promise.all(helperPromises).then(() => Promise.all(generationPromises))
       )
     })
     .then(() => {

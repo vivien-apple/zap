@@ -28,6 +28,7 @@ exports.packageType = {
   genTemplatesJson: 'gen-templates-json',
   genSingleTemplate: 'gen-template',
   genHelper: 'gen-helper',
+  genPartial: 'gen-partial',
 }
 
 exports.packageOptionCategory = {
