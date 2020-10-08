@@ -89,6 +89,7 @@ function asNativeType(type) {
     case 'CCMoveMode':
     case 'CCColorOptions':
     case 'cccoloroptions':
+    case 'cccolorloopdirection':
     case 'CCStepMode':
     case 'CCDirection':
     case 'LevelOptions':
@@ -125,7 +126,7 @@ function asNativeType(type) {
     case 'uint32':
     case 'UTC':
     case 'date':
-      return 'uin32_t'
+      return 'uint32_t'
     case 'bool':
       return 'bool'
     case 'octstr':

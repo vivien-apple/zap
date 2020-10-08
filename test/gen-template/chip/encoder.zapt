@@ -46,7 +46,9 @@ extern "C" {
 {{#all_user_cluster_commands}}
 {{#if (isStrEqual clusterSide parent.side)}}
 {{#if (isStrEqual clusterName parent.name)}}
-/** @brief Encode an {{asCommandLineCommand name}} command for {{clusterName}} server into buffer including the APS frame
+/**
+ * @brief
+ *    Encode an {{asCommandLineCommand name}} command for {{clusterName}} server into buffer including the APS frame
  */
 uint16_t encode{{clusterName}}{{asType name}}Command(uint8_t * buffer, uint16_t buf_length, uint8_t destination_endpoint{{#zcl_command_arguments}}, {{asNativeType type}} {{asCamelCased label}}{{/zcl_command_arguments}});
 
@@ -55,7 +57,9 @@ uint16_t encode{{clusterName}}{{asType name}}Command(uint8_t * buffer, uint16_t 
 {{/all_user_cluster_commands}}
 {{#user_all_attributes}}
 {{#if (isNumberEqual clusterCode parent.code)}}
-/** @brief Encode a read command for the {{asCommandLineCommand name}} attribute for {{clusterName}} server into buffer including the APS frame
+/**
+ * @brief
+ *    Encode a read command for the {{asCommandLineCommand name}} attribute for {{clusterName}} server into buffer including the APS frame
  */
 uint16_t encodeRead{{parent.name}}{{asType name}}Command(uint8_t * buffer, uint16_t buf_length, uint8_t destination_endpoint);
 

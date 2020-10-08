@@ -73,6 +73,12 @@ extern "C" {
 {{/all_user_clusters}}
 {{pad '\*' 78 '-'}}*/
 
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+#define {{asDelimitedMacro name}}_CLUSTER_ID {{asHex code 4}}
+{{/unless}}
+{{/all_user_clusters}}
+
 static uint16_t doEncodeApsFrame(BufBound & buf, uint16_t profileID, uint16_t clusterId, uint8_t sourceEndpoint,
                                  uint8_t destinationEndpoint, EmberApsOption options, uint16_t groupId, uint8_t sequence,
                                  uint8_t radius, bool isMeasuring)
@@ -199,9 +205,12 @@ uint16_t encodeReadAttributesCommand(uint8_t * buffer, uint16_t buf_length, uint
 {{#all_user_cluster_commands}}
 {{#if (isStrEqual clusterSide parent.side)}}
 {{#if (isStrEqual clusterName parent.name)}}
+/*
+ * Command {{asType name}}
+ */
 uint16_t encode{{clusterName}}{{asType name}}Command(uint8_t * buffer, uint16_t buf_length, uint8_t destination_endpoint{{#zcl_command_arguments}}, {{asNativeType type}} {{asCamelCased label}}{{/zcl_command_arguments}})
 {
-    COMMAND_HEADER("{{clusterName}}{{asType name}}", {{asHex parent.code 4}}, {{asHex code 2}});
+    COMMAND_HEADER("{{clusterName}}{{asType name}}", {{asDelimitedMacro parent.name}}_CLUSTER_ID, {{asHex code 2}});
     {{#zcl_command_arguments}}
     {{#if (isStrEqual (asNativeType type) "int16_t")}}
     buf.PutLE16(static_cast<uint16_t>({{asCamelCased label}}));
@@ -221,10 +230,13 @@ uint16_t encode{{clusterName}}{{asType name}}Command(uint8_t * buffer, uint16_t 
 {{/all_user_cluster_commands}}
 {{#user_all_attributes}}
 {{#if (isNumberEqual clusterCode parent.code)}}
+/*
+ * Attribute {{asType name}}
+ */
 uint16_t encodeRead{{parent.name}}{{asType name}}Command(uint8_t * buffer, uint16_t buf_length, uint8_t destination_endpoint)
 {
     uint16_t attr_ids[] = { {{asHex attributeCode 4}} };
-    READ_ATTRIBUTES("Read{{parent.name}}{{asType name}}", {{asHex clusterCode 4}});
+    READ_ATTRIBUTES("Read{{parent.name}}{{asType name}}", {{asDelimitedMacro parent.name}}_CLUSTER_ID);
 }
 
 {{/if}}

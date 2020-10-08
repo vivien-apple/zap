@@ -766,8 +766,40 @@ applicable to this document can be found in the LICENSE.md file.
         <requireAttribute>RemainingTime</requireAttribute>
         <requireAttribute>CurrentX</requireAttribute>
         <requireAttribute>CurrentY</requireAttribute>
+        <requireAttribute>ColorTemperatureMireds</requireAttribute>
         <requireAttribute>ColorMode</requireAttribute>
         <requireAttribute>Options</requireAttribute>
+        <requireAttribute>NumberOfPrimaries</requireAttribute>
+        <requireAttribute>Primary1X</requireAttribute>
+        <requireAttribute>Primary1Y</requireAttribute>
+        <requireAttribute>Primary1Intensity</requireAttribute>
+        <requireAttribute>Primary2X</requireAttribute>
+        <requireAttribute>Primary2Y</requireAttribute>
+        <requireAttribute>Primary2Intensity</requireAttribute>
+        <requireAttribute>Primary3X</requireAttribute>
+        <requireAttribute>Primary3Y</requireAttribute>
+        <requireAttribute>Primary3Intensity</requireAttribute>
+        <requireAttribute>Primary4X</requireAttribute>
+        <requireAttribute>Primary4Y</requireAttribute>
+        <requireAttribute>Primary4Intensity</requireAttribute>
+        <requireAttribute>Primary5X</requireAttribute>
+        <requireAttribute>Primary5Y</requireAttribute>
+        <requireAttribute>Primary5Intensity</requireAttribute>
+        <requireAttribute>Primary6X</requireAttribute>
+        <requireAttribute>Primary6Y</requireAttribute>
+        <requireAttribute>Primary6Intensity</requireAttribute>
+        <requireAttribute>EnhancedCurrentHue</requireAttribute>
+        <requireAttribute>EnhancedColorMode</requireAttribute>
+        <requireAttribute>ColorLoopActive</requireAttribute>
+        <requireAttribute>ColorLoopDirection</requireAttribute>
+        <requireAttribute>ColorLoopTime</requireAttribute>
+        <requireAttribute>ColorLoopStartEnhancedHue</requireAttribute>
+        <requireAttribute>ColorLoopStoredEnhancedHue</requireAttribute>
+        <requireAttribute>ColorCapabilities</requireAttribute>
+        <requireAttribute>ColorTempPhysicalMinMireds</requireAttribute>
+        <requireAttribute>ColorTempPhysicalMaxMireds</requireAttribute>
+        <requireAttribute>CoupleColorTempToLevelMinMireds</requireAttribute>
+        <requireAttribute>StartUpColorTemperatureMireds</requireAttribute>
         <requireAttribute>NumberOfPrimaries</requireAttribute>
         <requireCommand>MoveToHue</requireCommand>
         <requireCommand>MoveHue</requireCommand>
@@ -784,7 +816,52 @@ applicable to this document can be found in the LICENSE.md file.
         <requireCommand>StepColorTemperature</requireCommand>
         <requireCommand>StopMoveStep</requireCommand>
       </include>
-      <include cluster="DoorLock" client="false" server="true" clientLocked="true" serverLocked="true"/>
+      <include cluster="DoorLock" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireCommand>LockDoor</requireCommand>
+        <requireCommand>UnlockDoor</requireCommand>
+        <requireCommand>UnlockWithTimeout</requireCommand>
+        <requireCommand>UnlockWithTimeoutResponse</requireCommand>
+        <requireCommand>GetLogRecord</requireCommand>
+        <requireCommand>GetLogRecordResponse</requireCommand>
+        <requireCommand>SetPINCode</requireCommand>
+        <requireCommand>SetPINCodeResponse</requireCommand>
+        <requireCommand>GetPINCode</requireCommand>
+        <requireCommand>GetPINCodeResponse</requireCommand>
+        <requireCommand>ClearPINCode</requireCommand>
+        <requireCommand>ClearPINCodeResponse</requireCommand>
+        <requireCommand>ClearAllPINCodes</requireCommand>
+        <requireCommand>ClearAllPINCodesResponse</requireCommand>
+        <requireCommand>SetWeekdaySchedule</requireCommand>
+        <requireCommand>SetWeekdayScheduleResponse</requireCommand>
+        <requireCommand>GetWeekdaySchedule</requireCommand>
+        <requireCommand>GetWeekdayScheduleResponse</requireCommand>
+        <requireCommand>ClearWeekdaySchedule</requireCommand>
+        <requireCommand>ClearWeekdayScheduleResponse</requireCommand>
+        <requireCommand>SetYearDaySchedule</requireCommand>
+        <requireCommand>SetYearDayScheduleResponse</requireCommand>
+        <requireCommand>GetYearDaySchedule</requireCommand>
+        <requireCommand>GetYearDayScheduleResponse</requireCommand>
+        <requireCommand>ClearYearDaySchedule</requireCommand>
+        <requireCommand>ClearYearDayScheduleResponse</requireCommand>
+        <requireCommand>SetHolidaySchedule</requireCommand>
+        <requireCommand>SetHolidayScheduleResponse</requireCommand>
+        <requireCommand>GetHolidaySchedule</requireCommand>
+        <requireCommand>GetHolidayScheduleResponse</requireCommand>
+        <requireCommand>ClearHolidaySchedule</requireCommand>
+        <requireCommand>ClearHolidayScheduleResponse</requireCommand>
+        <requireCommand>SetUserType</requireCommand>
+        <requireCommand>SetUserTypeResponse</requireCommand>
+        <requireCommand>GetUserType</requireCommand>
+        <requireCommand>GetUserTypeResponse</requireCommand>
+        <requireCommand>SetRFIDCode</requireCommand>
+        <requireCommand>SetRFIDCodeResponse</requireCommand>
+        <requireCommand>GetRFIDCode</requireCommand>
+        <requireCommand>GetRFIDCodeResponse</requireCommand>
+        <requireCommand>ClearRFIDCode</requireCommand>
+        <requireCommand>ClearRFIDCodeResponse</requireCommand>
+        <requireCommand>ClearAllRFIDCodes</requireCommand>
+        <requireCommand>ClearAllRFIDCodesResponse</requireCommand>
+      </include>
       <include cluster="Groups" client="false" server="true" clientLocked="true" serverLocked="true">
         <requireAttribute>NameSupport</requireAttribute>
         <requireCommand>AddGroup</requireCommand>
@@ -820,8 +897,11 @@ applicable to this document can be found in the LICENSE.md file.
         <requireCommand>RecallScene</requireCommand>
         <requireCommand>GetSceneMembership</requireCommand>
         <requireCommand>EnhancedAddScene</requireCommand>
+        <requireCommand>EnhancedAddSceneResponse</requireCommand>
         <requireCommand>EnhancedViewScene</requireCommand>
+        <requireCommand>EnhancedViewSceneResponse</requireCommand>
         <requireCommand>CopyScene</requireCommand>
+        <requireCommand>CopySceneResponse</requireCommand>
       </include>
       <include cluster="TemperatureMeasurement" client="false" server="true" clientLocked="false" serverLocked="true"/>
     </clusters>
