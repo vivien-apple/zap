@@ -82,7 +82,6 @@ function initializeGlobalHelpers() {
     './helper-zcl.js',
     './helper-zap.js',
     './helper-c.js',
-    './helper-chip-tool.js',
     './helper-session.js',
   ]
 
