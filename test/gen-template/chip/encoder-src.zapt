@@ -1,4 +1,4 @@
-{{chip_header}}
+{{> header}}
 
 #include "chip-zcl-zpro-codec.h"
 
@@ -63,15 +63,7 @@
 using namespace chip;
 extern "C" {
 
-{{pad '/*' 78 '-'}}*\
-{{pad "| Cluster Name" 70 ' '}}{{pad "|   ID" 9 ' '}}|
-{{pad "|" 70 '-'}}{{pad "+" 9 '-'}}|
-{{#all_user_clusters}}
-{{#unless (isClient side) }}
-{{pad (concat "| " name) 70  " "}}{{pad (concat "| " (asHex code 4)) 9 ' '}}|
-{{/unless}}
-{{/all_user_clusters}}
-{{pad '\*' 78 '-'}}*/
+{{> clusters_header}}
 
 {{#all_user_clusters}}
 {{#unless (isClient side) }}
@@ -180,27 +172,7 @@ uint16_t encodeReadAttributesCommand(uint8_t * buffer, uint16_t buf_length, uint
 
 {{#all_user_clusters}}
 {{#unless (isClient side) }}
-{{pad '/*' 78 '-'}}*\
-{{pad (concat "| Cluster " name) 79 ' '}}|
-{{pad "|" 79 '-'}}|
-{{pad "| Commands: " 79 ' '}}|
-{{pad "|" 79 ' '}}|
-{{#all_user_cluster_commands}}
-{{#if (isStrEqual clusterSide parent.side)}}
-{{#if (isStrEqual clusterName parent.name)}}
-{{pad (concat "| * " name) 79 ' '}}|
-{{/if}}
-{{/if}}
-{{/all_user_cluster_commands}}
-{{pad "|" 79 ' '}}|
-{{pad "| Attributes: " 79 ' '}}|
-{{pad "|" 79 ' '}}|
-{{#user_all_attributes}}
-{{#if (isNumberEqual clusterCode parent.code)}}
-{{pad (concat "| * " name) 79 ' '}}|
-{{/if}}
-{{/user_all_attributes}}
-{{pad '\*' 78 '-'}}*/
+{{> cluster_header}}
 
 {{#all_user_cluster_commands}}
 {{#if (isStrEqual clusterSide parent.side)}}

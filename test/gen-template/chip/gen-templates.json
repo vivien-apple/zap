@@ -13,6 +13,20 @@
     "cli": "cli.json"
   },
   "helpers": ["helper-chip.js"],
+  "partials": [
+    {
+      "name": "header",
+      "path": "partials/header.zapt"
+    },
+    {
+      "name": "clusters_header",
+      "path": "partials/clusters_header.zapt"
+    },
+    {
+      "name": "cluster_header",
+      "path": "partials/cluster_header.zapt"
+    }
+  ],
   "templates": [
     {
       "path": "call-command-handler.zapt",

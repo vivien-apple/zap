@@ -1,19 +1,11 @@
-{{chip_header}}
+{{> header}}
 
 #ifndef __CHIPTOOL_CLUSTERS_COMMANDS_H__
 #define __CHIPTOOL_CLUSTERS_COMMANDS_H__
 
 #include "../common/ModelCommand.h"
 
-{{pad '/*' 78 '-'}}*\
-{{pad "| Cluster Name" 70 ' '}}{{pad "|   ID" 9 ' '}}|
-{{pad "|" 70 '-'}}{{pad "+" 9 '-'}}|
-{{#all_user_clusters}}
-{{#unless (isClient side) }}
-{{pad (concat "| " name) 70  " "}}{{pad (concat "| " (asHex code 4)) 9 ' '}}|
-{{/unless}}
-{{/all_user_clusters}}
-{{pad '\*' 78 '-'}}*/
+{{> clusters_header}}
 
 {{#all_user_clusters}}
 {{#unless (isClient side) }}
@@ -24,26 +16,7 @@
 {{#all_user_clusters}}
 {{#unless (isClient side) }}
 
-{{pad '/*' 78 '-'}}*\
-{{pad (concat "| Cluster " name) 70 ' '}}{{pad (concat "| " (asHex code 4)) 9 ' '}}|
-{{pad "|" 79 '-'}}|
-{{pad "| Commands: " 70 ' '}}{{pad "| " 9 ' '}}|
-{{#all_user_cluster_commands}}
-{{#if (isStrEqual clusterSide parent.side)}}
-{{#if (isStrEqual clusterName parent.name)}}
-{{pad (concat "| * " name) 70 ' '}}{{pad (concat "|   " (asHex code 2)) 9 ' '}}|
-{{/if}}
-{{/if}}
-{{/all_user_cluster_commands}}
-{{pad "|" 70 ' '}}{{pad "|" 9 ' '}}|
-{{pad "|" 79 '-'}}|
-{{pad "| Attributes:: " 70 ' '}}{{pad "| " 9 ' '}}|
-{{#user_all_attributes}}
-{{#if (isNumberEqual clusterCode parent.code)}}
-{{pad (concat "| * " name) 70 ' '}}{{pad (concat "| " (asHex attributeCode 4)) 9 ' '}}|
-{{/if}}
-{{/user_all_attributes}}
-{{pad '\*' 78 '-'}}*/
+{{> cluster_header}}
 
 {{#all_user_cluster_commands}}
 {{#if (isStrEqual clusterSide parent.side)}}
@@ -63,6 +36,8 @@ public:
         AddArgument("{{asCamelCased label}}", 0, UINT8_MAX, &m{{label}});
         {{else if (isStrEqual (asNativeType type) "uint16_t")}}
         AddArgument("{{asCamelCased label}}", 0, UINT16_MAX, &m{{label}});
+        {{else if (isStrEqual (asNativeType type) "uint32_t")}}
+        AddArgument("{{asCamelCased label}}", 0, UINT32_MAX, &m{{label}});
         {{else if (isStrEqual (asNativeType type) "char *")}}
         AddArgument("{{asCamelCased label}}", &m{{label}});
         {{else}}
@@ -88,31 +63,38 @@ public:
     // Cluster Specific Response: {{name}}
     bool HandleClusterResponse(uint8_t * message, uint16_t messageLen) const override
     {
-        ChipLogProgress(chipTool, "{{name}}:");
-
         {{#zcl_command_arguments}}
         {{#if (isStrEqual (asNativeType type) "int16_t")}}
         {{asNativeType type}} {{asCamelCased label}} = chip::Encoding::LittleEndian::Read16(message);
-        ChipLogProgress(chipTool, "  {{asCamelCased label}}: %d", {{asCamelCased label}});
-
         {{else if (isStrEqual (asNativeType type) "uint8_t")}}
         {{asNativeType type}} {{asCamelCased label}} = chip::Encoding::Read8(message);
-        ChipLogProgress(chipTool, "  {{asCamelCased label}}: 0x%02x", {{asCamelCased label}});
-
         {{else if (isStrEqual (asNativeType type) "uint16_t")}}
         {{asNativeType type}} {{asCamelCased label}} = chip::Encoding::LittleEndian::Read16(message);
-        ChipLogProgress(chipTool, "  {{asCamelCased label}}: 0x%04x", {{asCamelCased label}});
-
+        {{else if (isStrEqual (asNativeType type) "uint32_t")}}
+        {{asNativeType type}} {{asCamelCased label}} = chip::Encoding::LittleEndian::Read32(message);
         {{else if (isStrEqual (asNativeType type) "char *")}}
         uint8_t msgLen = chip::Encoding::Read8(message);
-        ChipLogProgress(chipTool, "  {{asCamelCased label}} len: 0x%02x", msgLen);
-
         {{else}}
         // FIXME - {{type}} is not supported.
         {{asNativeType type}} {{asCamelCased label}};
-
         {{/if}}
         {{/zcl_command_arguments}}
+
+        ChipLogProgress(chipTool, "{{name}}:");
+        {{#zcl_command_arguments}}
+        {{#if (isStrEqual (asNativeType type) "int16_t")}}
+        ChipLogProgress(chipTool, "  {{asCamelCased label}}: %d", {{asCamelCased label}});
+        {{else if (isStrEqual (asNativeType type) "uint8_t")}}
+        ChipLogProgress(chipTool, "  {{asCamelCased label}}: 0x%02x", {{asCamelCased label}});
+        {{else if (isStrEqual (asNativeType type) "uint16_t")}}
+        ChipLogProgress(chipTool, "  {{asCamelCased label}}: 0x%04x", {{asCamelCased label}});
+        {{else if (isStrEqual (asNativeType type) "uint32_t")}}
+        ChipLogProgress(chipTool, "  {{asCamelCased label}}: 0x%08x", {{asCamelCased label}});
+        {{else if (isStrEqual (asNativeType type) "char *")}}
+        ChipLogProgress(chipTool, "  {{asCamelCased label}} len: 0x%02x", msgLen);
+        {{/if}}
+        {{/zcl_command_arguments}}
+
         return true;
     }
     {{/if}}
@@ -155,6 +137,9 @@ public:
 {{/unless}}
 {{/all_user_clusters}}
 
+{{pad '/*' 78 '-'}}*\
+{{pad '| Register all Clusters commands' 79 ' '}}|
+{{pad '\*' 78 '-'}}*/
 {{#all_user_clusters}}
 {{#unless (isClient side) }}
 void registerCluster{{name}}(Commands & commands)
@@ -182,9 +167,6 @@ void registerCluster{{name}}(Commands & commands)
 {{/unless}}
 {{/all_user_clusters}}
 
-{{pad '/*' 78 '-'}}*\
-{{pad '| Register all Clusters commands' 79 ' '}}|
-{{pad '\*' 78 '-'}}*/
 void registerClusters(Commands & commands)
 {
 {{#all_user_clusters}}
