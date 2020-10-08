@@ -1,0 +1,9 @@
+{{pad '/*' 78 '-'}}*\
+{{pad "| Cluster Name" 70 ' '}}{{pad "|   ID" 9 ' '}}|
+{{pad "|" 70 '-'}}{{pad "+" 9 '-'}}|
+{{#all_user_clusters}}
+{{#unless (isClient side) }}
+{{pad (concat "| " name) 70  " "}}{{pad (concat "| " (asHex code 4)) 9 ' '}}|
+{{/unless}}
+{{/all_user_clusters}}
+{{pad '\*' 78 '-'}}*/

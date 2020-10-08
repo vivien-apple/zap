@@ -1,0 +1,20 @@
+{{pad '/*' 78 '-'}}*\
+{{pad (concat "| Cluster " name) 70 ' '}}{{pad (concat "| " (asHex code 4)) 9 ' '}}|
+{{pad "|" 79 '-'}}|
+{{pad "| Commands: " 70 ' '}}{{pad "| " 9 ' '}}|
+{{#all_user_cluster_commands}}
+{{#if (isStrEqual clusterSide parent.side)}}
+{{#if (isStrEqual clusterName parent.name)}}
+{{pad (concat "| * " name) 70 ' '}}{{pad (concat "|   " (asHex code 2)) 9 ' '}}|
+{{/if}}
+{{/if}}
+{{/all_user_cluster_commands}}
+{{pad "|" 70 ' '}}{{pad "|" 9 ' '}}|
+{{pad "|" 79 '-'}}|
+{{pad "| Attributes:: " 70 ' '}}{{pad "| " 9 ' '}}|
+{{#user_all_attributes}}
+{{#if (isNumberEqual clusterCode parent.code)}}
+{{pad (concat "| * " name) 70 ' '}}{{pad (concat "| " (asHex attributeCode 4)) 9 ' '}}|
+{{/if}}
+{{/user_all_attributes}}
+{{pad '\*' 78 '-'}}*/
