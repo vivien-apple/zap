@@ -65,6 +65,7 @@ function produceContent(db, sessionId, singlePkg) {
 function loadPartial(name, path) {
   return fsPromise.readFile(path, 'utf8').then((data) => {
     handlebars.registerPartial(name, data)
+    return true
   })
 }
 
