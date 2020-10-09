@@ -15,153 +15,153 @@ applicable to this document can be found in the LICENSE.md file.
   <!-- Tools need to process XML includes first see https://stackoverflow.com/questions/1098116/xinclude-schema-namespace-validation 
     for how to enable this in the eclipse validation config. -->
   <!-- types? -->
-  <type:type id="00" short="nodata" name="No data" />
-  <type:type id="08" short="data8" name="8-bit data" discrete="true" />
-  <type:type id="09" short="data16" name="16-bit data" discrete="true" />
-  <type:type id="0a" short="data24" name="24-bit data" discrete="true" />
-  <type:type id="0b" short="data32" name="32-bit data" discrete="true" />
-  <type:type id="0c" short="data40" name="40-bit data" discrete="true" />
-  <type:type id="0d" short="data48" name="48-bit data" discrete="true" />
-  <type:type id="0e" short="data56" name="56-bit data" discrete="true" />
-  <type:type id="0f" short="data64" name="64-bit data" discrete="true" />
-  <type:type id="10" short="bool" name="Boolean" discrete="true">
+  <type:type id="00" short="nodata" name="No data" size="0" />
+  <type:type id="08" short="data8" name="8-bit data" discrete="true" size="1" />
+  <type:type id="09" short="data16" name="16-bit data" discrete="true" size="2" />
+  <type:type id="0a" short="data24" name="24-bit data" discrete="true" size="3" />
+  <type:type id="0b" short="data32" name="32-bit data" discrete="true" size="4" />
+  <type:type id="0c" short="data40" name="40-bit data" discrete="true" size="5" />
+  <type:type id="0d" short="data48" name="48-bit data" discrete="true" size="6" />
+  <type:type id="0e" short="data56" name="56-bit data" discrete="true" size="7" />
+  <type:type id="0f" short="data64" name="64-bit data" discrete="true" size="8" />
+  <type:type id="10" short="bool" name="Boolean" discrete="true" size="1">
     <restriction>
       <type:invalid value="255" />
     </restriction>
   </type:type>
-  <type:type id="18" short="map8" name="8-bit bitmap" discrete="true" />
-  <type:type id="19" short="map16" name="16-bit bitmap" discrete="true" />
-  <type:type id="1a" short="map24" name="24-bit bitmap" discrete="true" />
-  <type:type id="1b" short="map32" name="32-bit bitmap" discrete="true" />
-  <type:type id="1c" short="map40" name="40-bit bitmap" discrete="true" />
-  <type:type id="1d" short="map48" name="48-bit bitmap" discrete="true" />
-  <type:type id="1e" short="map56" name="56-bit bitmap" discrete="true" />
-  <type:type id="1f" short="map64" name="64-bit bitmap" discrete="true" />
-  <type:type id="20" short="uint8" name="Unsigned  8-bit integer">
+  <type:type id="18" short="map8" name="8-bit bitmap" discrete="true" size="1" />
+  <type:type id="19" short="map16" name="16-bit bitmap" discrete="true" size="2" />
+  <type:type id="1a" short="map24" name="24-bit bitmap" discrete="true" size="3" />
+  <type:type id="1b" short="map32" name="32-bit bitmap" discrete="true" size="4" />
+  <type:type id="1c" short="map40" name="40-bit bitmap" discrete="true" size="5" />
+  <type:type id="1d" short="map48" name="48-bit bitmap" discrete="true" size="6" />
+  <type:type id="1e" short="map56" name="56-bit bitmap" discrete="true" size="7" />
+  <type:type id="1f" short="map64" name="64-bit bitmap" discrete="true" size="8" />
+  <type:type id="20" short="uint8" name="Unsigned  8-bit integer" size="1">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="254" />
       <type:invalid value="255" />
     </restriction>
   </type:type>
-  <type:type id="21" short="uint16" name="Unsigned 16-bit integer">
+  <type:type id="21" short="uint16" name="Unsigned 16-bit integer" size="2">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="65534" />
       <type:invalid value="65535" />
     </restriction>
   </type:type>
-  <type:type id="22" short="uint24" name="Unsigned 24-bit integer">
+  <type:type id="22" short="uint24" name="Unsigned 24-bit integer" size="3">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="16777214" />
       <type:invalid value="16777215" />
     </restriction>
   </type:type>
-  <type:type id="23" short="uint32" name="Unsigned 32-bit integer">
+  <type:type id="23" short="uint32" name="Unsigned 32-bit integer" size="4">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="4294967294" />
       <type:invalid value="4294967295" />
     </restriction>
   </type:type>
-  <type:type id="24" short="uint40" name="Unsigned 40-bit integer">
+  <type:type id="24" short="uint40" name="Unsigned 40-bit integer" size="5">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="1099511627774" />
       <type:invalid value="1099511627775" />
     </restriction>
   </type:type>
-  <type:type id="25" short="uint48" name="Unsigned 48-bit integer">
+  <type:type id="25" short="uint48" name="Unsigned 48-bit integer" size="6">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="281474976710654" />
       <type:invalid value="281474976710655" />
     </restriction>
   </type:type>
-  <type:type id="26" short="uint56" name="Unsigned 56-bit integer">
+  <type:type id="26" short="uint56" name="Unsigned 56-bit integer" size="7">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="72057594037927934" />
       <type:invalid value="72057594037927935" />
     </restriction>
   </type:type>
-  <type:type id="27" short="uint64" name="Unsigned 64-bit integer">
+  <type:type id="27" short="uint64" name="Unsigned 64-bit integer" size="8">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="18446744073709551614" />
       <type:invalid value="18446744073709551615" />
     </restriction>
   </type:type>
-  <type:type id="28" short="int8" name="Signed 8-bit integer">
+  <type:type id="28" short="int8" name="Signed 8-bit integer" size="1">
     <restriction>
       <type:minInclusive value="-127" />
       <type:maxInclusive value="127" />
       <type:invalid value="-128" />
     </restriction>
   </type:type>
-  <type:type id="29" short="int16" name="Signed 16-bit integer">
+  <type:type id="29" short="int16" name="Signed 16-bit integer" size="2">
     <restriction>
       <type:minInclusive value="-32767" />
       <type:maxInclusive value="32767" />
       <type:invalid value="-32768" />
     </restriction>
   </type:type>
-  <type:type id="2a" short="int24" name="Signed 24-bit integer">
+  <type:type id="2a" short="int24" name="Signed 24-bit integer" size="3">
     <restriction>
       <type:minInclusive value="-8388607" />
       <type:maxInclusive value="8388607" />
       <type:invalid value="-8388608" />
     </restriction>
   </type:type>
-  <type:type id="2b" short="int32" name="Signed 32-bit integer">
+  <type:type id="2b" short="int32" name="Signed 32-bit integer" size="4">
     <restriction>
       <type:minInclusive value="-2147483647" />
       <type:maxInclusive value="2147483647" />
       <type:invalid value="-2147483648" />
     </restriction>
   </type:type>
-  <type:type id="2c" short="int40" name="Signed 40-bit integer">
+  <type:type id="2c" short="int40" name="Signed 40-bit integer" size="5">
     <restriction>
       <type:minInclusive value="-549755813887" />
       <type:maxInclusive value="549755813887" />
       <type:invalid value="-549755813888" />
     </restriction>
   </type:type>
-  <type:type id="2d" short="int48" name="Signed 48-bit integer">
+  <type:type id="2d" short="int48" name="Signed 48-bit integer" size="6">
     <restriction>
       <type:minInclusive value="-140737488355327" />
       <type:maxInclusive value="140737488355327" />
       <type:invalid value="-140737488355328" />
     </restriction>
   </type:type>
-  <type:type id="2e" short="int56" name="Signed 56-bit integer">
+  <type:type id="2e" short="int56" name="Signed 56-bit integer" size="7">
     <restriction>
       <type:minInclusive value="-36028797018963967" />
       <type:maxInclusive value="36028797018963967" />
       <type:invalid value="-36028797018963968" />
     </restriction>
   </type:type>
-  <type:type id="2f" short="int64" name="Signed 64-bit integer">
+  <type:type id="2f" short="int64" name="Signed 64-bit integer" size="8">
     <restriction>
       <type:minInclusive value="-9223372036854775807" />
       <type:maxInclusive value="9223372036854775807" />
       <type:invalid value="-9223372036854775808" />
     </restriction>
   </type:type>
-  <type:type id="30" short="enum8" name="8-bit enumeration" discrete="true">
+  <type:type id="30" short="enum8" name="8-bit enumeration" discrete="true" size="1">
     <restriction>
       <type:invalid value="255" />
     </restriction>
   </type:type>
-  <type:type id="31" short="enum16" name="16-bit enumeration" discrete="true">
+  <type:type id="31" short="enum16" name="16-bit enumeration" discrete="true" size="2">
     <restriction>
       <type:invalid value="65535" />
     </restriction>
   </type:type>
   
   <!-- Floating Point -->
-  <type:type id="38" short="semi" name="Semi-precision">
+  <type:type id="38" short="semi" name="Semi-precision" size="2">
     <!-- Not sure how to restrict as it's not really a standard type -->
     <restriction>
       <type:minInclusive value="-6.5504E+04"/>
@@ -172,7 +172,7 @@ applicable to this document can be found in the LICENSE.md file.
       <type:special name="NegativeInfinity" value="fc00" />
     </restriction>
   </type:type>
-  <type:type id="39" short="single" name="Single precision">
+  <type:type id="39" short="single" name="Single precision" size="4">
     <restriction>
       <type:minInclusive value="-3.402823E+38" />
       <type:maxInclusive value="3.402823E+38" />
@@ -182,7 +182,7 @@ applicable to this document can be found in the LICENSE.md file.
       <type:special name="NegativeInfinity" value="ff800000" />
     </restriction>
   </type:type>
-  <type:type id="3a" short="double" name="Double precision">
+  <type:type id="3a" short="double" name="Double precision" size="8">
     <restriction>
       <type:minInclusive value="-1.80E+308" />
       <type:maxInclusive value="1.80E+308" />
@@ -208,21 +208,21 @@ applicable to this document can be found in the LICENSE.md file.
   <type:type id="51" short="bag" name="Bag" discrete="true" />
   
   <!-- Time -->
-  <type:type id="e0" short="ToD" name="Time of day">
+  <type:type id="e0" short="ToD" name="Time of day" size="4">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="4294967294" />
       <type:invalid value="4294967295" />
     </restriction>
   </type:type>
-  <type:type id="e1" short="date" name="Date">
+  <type:type id="e1" short="date" name="Date" size="4">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="4294967294" />
       <type:invalid value="4294967295" />
     </restriction>
   </type:type>
-  <type:type id="e2" short="UTC" name="UTCTime">
+  <type:type id="e2" short="UTC" name="UTCTime" size="4">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="4294967294" />
@@ -230,21 +230,21 @@ applicable to this document can be found in the LICENSE.md file.
     </restriction>
   </type:type>
   <!-- Identifiers -->
-  <type:type id="e8" short="clusterId" name="Cluster ID" discrete="true">
+  <type:type id="e8" short="clusterId" name="Cluster ID" discrete="true" size="2">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="65534" />
       <type:invalid value="65535" />
     </restriction>
   </type:type>
-  <type:type id="e9" short="attribId" name="Attribute ID" discrete="true">
+  <type:type id="e9" short="attribId" name="Attribute ID" discrete="true" size="2">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="65534" />
       <type:invalid value="65535" />
     </restriction>
   </type:type>
-  <type:type id="ea" short="bacOID" name="BACnet OID" discrete="true">
+  <type:type id="ea" short="bacOID" name="BACnet OID" discrete="true" size="4">
     <restriction>
       <type:minInclusive value="0" />
       <type:maxInclusive value="4294967294" />
@@ -252,19 +252,19 @@ applicable to this document can be found in the LICENSE.md file.
     </restriction>
   </type:type>
   <!-- Misc -->
-  <type:type id="f0" short="EUI64" name="IEEE address" discrete="true">
+  <type:type id="f0" short="EUI64" name="IEEE address" discrete="true" size="8">
     <restriction>
       <type:length value="8" />
     </restriction>
   </type:type>
-  <type:type id="f1" short="key128" name="128-bit security key" discrete="true">
+  <type:type id="f1" short="key128" name="128-bit security key" discrete="true" size="16">
     <restriction>
       <type:length value="16" />
     </restriction>
   </type:type>
   <!-- Opaque (not defined since there is no ID -->
   <!-- Unknown -->
-  <type:type id="ff" short="unk" name="Unknown" />
+  <type:type id="ff" short="unk" name="Unknown" size="0" />
 
   <!-- ZCL Data Types -->
   <type:type id="30" short="zclType" name="ZCL Types" discrete="true" inheritsFrom="enum8">
