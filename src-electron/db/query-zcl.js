@@ -360,7 +360,7 @@ function selectAttributesByClusterCodeAndManufacturerCode(
   clusterCode,
   manufacturerCode
 ) {
-  var manufacturerString
+  let manufacturerString
   if (manufacturerCode == null) {
     manufacturerString = ' AND CLUSTER.MANUFACTURER_CODE IS NULL'
   } else {
@@ -823,14 +823,14 @@ WHERE
  */
 function insertGlobals(db, packageId, data) {
   Env.logInfo(`Insert globals: ${data.length}`)
-  var commandsToLoad = []
-  var attributesToLoad = []
-  var argsForCommands = []
-  var argsToLoad = []
-  var i
+  let commandsToLoad = []
+  let attributesToLoad = []
+  let argsForCommands = []
+  let argsToLoad = []
+  let i
   for (i = 0; i < data.length; i++) {
     if ('commands' in data[i]) {
-      var commands = data[i].commands
+      let commands = data[i].commands
       commandsToLoad.push(
         ...commands.map((command) => [
           null, // clusterId
@@ -845,7 +845,7 @@ function insertGlobals(db, packageId, data) {
       argsForCommands.push(...commands.map((command) => command.args))
     }
     if ('attributes' in data[i]) {
-      var attributes = data[i].attributes
+      let attributes = data[i].attributes
       attributesToLoad.push(
         ...attributes.map((attribute) => [
           null, // clusterId
@@ -865,17 +865,17 @@ function insertGlobals(db, packageId, data) {
       )
     }
   }
-  var pCommand = dbApi
+  let pCommand = dbApi
     .dbMultiInsert(
       db,
       'INSERT INTO COMMAND (CLUSTER_REF, PACKAGE_REF, CODE, NAME, DESCRIPTION, SOURCE, IS_OPTIONAL) VALUES (?,?,?,?,?,?,?)',
       commandsToLoad
     )
     .then((lids) => {
-      var j
+      let j
       for (j = 0; j < lids.length; j++) {
-        var lastCmdId = lids[j]
-        var args = argsForCommands[j]
+        let lastCmdId = lids[j]
+        let args = argsForCommands[j]
         if (args != undefined && args != null) {
           argsToLoad.push(
             ...args.map((arg) => [lastCmdId, arg.name, arg.type, arg.isArray])
@@ -888,7 +888,7 @@ function insertGlobals(db, packageId, data) {
         argsToLoad
       )
     })
-  var pAttribute = dbApi.dbMultiInsert(
+  let pAttribute = dbApi.dbMultiInsert(
     db,
     `
 INSERT INTO ATTRIBUTE
@@ -929,17 +929,17 @@ function insertClusterExtensions(db, packageId, data) {
       data.map((cluster) => [cluster.code])
     )
     .then((rows) => {
-      var commandsToLoad = []
-      var attributesToLoad = []
-      var argsForCommands = []
-      var argsToLoad = []
-      var i
+      let commandsToLoad = []
+      let attributesToLoad = []
+      let argsForCommands = []
+      let argsToLoad = []
+      let i
       for (i = 0; i < rows.length; i++) {
-        var row = rows[i]
+        let row = rows[i]
         if (row != null) {
-          var lastId = row.CLUSTER_ID
+          let lastId = row.CLUSTER_ID
           if ('commands' in data[i]) {
-            var commands = data[i].commands
+            let commands = data[i].commands
             commandsToLoad.push(
               ...commands.map((command) => [
                 lastId,
@@ -955,7 +955,7 @@ function insertClusterExtensions(db, packageId, data) {
             argsForCommands.push(...commands.map((command) => command.args))
           }
           if ('attributes' in data[i]) {
-            var attributes = data[i].attributes
+            let attributes = data[i].attributes
             attributesToLoad.push(
               ...attributes.map((attribute) => [
                 lastId,
@@ -983,17 +983,17 @@ function insertClusterExtensions(db, packageId, data) {
           )
         }
       }
-      var pCommand = dbApi
+      let pCommand = dbApi
         .dbMultiInsert(
           db,
           'INSERT INTO COMMAND (CLUSTER_REF, PACKAGE_REF, CODE, MANUFACTURER_CODE, NAME, DESCRIPTION, SOURCE, IS_OPTIONAL) VALUES (?,?,?,?,?,?,?,?)',
           commandsToLoad
         )
         .then((lids) => {
-          var j
+          let j
           for (j = 0; j < lids.length; j++) {
-            var lastId = lids[j]
-            var args = argsForCommands[j]
+            let lastId = lids[j]
+            let args = argsForCommands[j]
             if (args != undefined && args != null) {
               argsToLoad.push(
                 ...args.map((arg) => [lastId, arg.name, arg.type, arg.isArray])
@@ -1006,7 +1006,7 @@ function insertClusterExtensions(db, packageId, data) {
             argsToLoad
           )
         })
-      var pAttribute = dbApi.dbMultiInsert(
+      let pAttribute = dbApi.dbMultiInsert(
         db,
         'INSERT INTO ATTRIBUTE (CLUSTER_REF, PACKAGE_REF, CODE, MANUFACTURER_CODE, NAME, TYPE, SIDE, DEFINE, MIN, MAX, IS_WRITABLE, DEFAULT_VALUE, IS_OPTIONAL, IS_REPORTABLE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
         attributesToLoad
@@ -1024,9 +1024,9 @@ function insertClusterExtensions(db, packageId, data) {
  * @returns Promise of data insertion.
  */
 function insertGlobalAttributeDefault(db, packageId, data) {
-  var individualClusterPromise = []
+  let individualClusterPromise = []
   data.forEach((d) => {
-    var args = []
+    let args = []
     d.globalAttribute.forEach((ga) => {
       if (ga.side == 'either') {
         args.push([
@@ -1049,7 +1049,7 @@ function insertGlobalAttributeDefault(db, packageId, data) {
         args.push([packageId, d.code, packageId, ga.code, ga.side, ga.value])
       }
     })
-    var p = dbApi.dbMultiInsert(
+    let p = dbApi.dbMultiInsert(
       db,
       `
   INSERT OR IGNORE INTO GLOBAL_ATTRIBUTE_DEFAULT (
@@ -1095,15 +1095,15 @@ function insertClusters(db, packageId, data) {
       })
     )
     .then((lastIdsArray) => {
-      var commandsToLoad = []
-      var attributesToLoad = []
-      var argsForCommands = []
-      var argsToLoad = []
-      var i
+      let commandsToLoad = []
+      let attributesToLoad = []
+      let argsForCommands = []
+      let argsToLoad = []
+      let i
       for (i = 0; i < lastIdsArray.length; i++) {
-        var lastId = lastIdsArray[i]
+        let lastId = lastIdsArray[i]
         if ('commands' in data[i]) {
-          var commands = data[i].commands
+          let commands = data[i].commands
           commandsToLoad.push(
             ...commands.map((command) => [
               lastId,
@@ -1118,7 +1118,7 @@ function insertClusters(db, packageId, data) {
           argsForCommands.push(...commands.map((command) => command.args))
         }
         if ('attributes' in data[i]) {
-          var attributes = data[i].attributes
+          let attributes = data[i].attributes
           attributesToLoad.push(
             ...attributes.map((attribute) => [
               lastId,
@@ -1138,17 +1138,17 @@ function insertClusters(db, packageId, data) {
           )
         }
       }
-      var pCommand = dbApi
+      let pCommand = dbApi
         .dbMultiInsert(
           db,
           'INSERT INTO COMMAND (CLUSTER_REF, PACKAGE_REF, CODE, NAME, DESCRIPTION, SOURCE, IS_OPTIONAL) VALUES (?,?,?,?,?,?,?)',
           commandsToLoad
         )
         .then((lids) => {
-          var j
+          let j
           for (j = 0; j < lids.length; j++) {
-            var lastCmdId = lids[j]
-            var args = argsForCommands[j]
+            let lastCmdId = lids[j]
+            let args = argsForCommands[j]
             if (args != undefined && args != null) {
               argsToLoad.push(
                 ...args.map((arg) => [
@@ -1166,7 +1166,7 @@ function insertClusters(db, packageId, data) {
             argsToLoad
           )
         })
-      var pAttribute = dbApi.dbMultiInsert(
+      let pAttribute = dbApi.dbMultiInsert(
         db,
         'INSERT INTO ATTRIBUTE (CLUSTER_REF, PACKAGE_REF, CODE, NAME, TYPE, SIDE, DEFINE, MIN, MAX, IS_WRITABLE, DEFAULT_VALUE, IS_OPTIONAL, IS_REPORTABLE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)',
         attributesToLoad
@@ -1201,14 +1201,15 @@ function insertDeviceTypes(db, packageId, data) {
       })
     )
     .then((lastIdsArray) => {
-      var i
-      var itemsToLoad = []
+      let i
+      let itemsToLoad = []
+      let zclIdsPromises = []
       for (i = 0; i < lastIdsArray.length; i++) {
         if ('clusters' in data[i]) {
-          var lastId = lastIdsArray[i]
-          var clusters = data[i].clusters
+          let lastId = lastIdsArray[i]
+          let clusters = data[i].clusters
           // This is an array that links the generated deviceTyepRef to the cluster via generating an array of arrays,
-          var zclIdsPromises = Promise.all(
+          zclIdsPromises = Promise.all(
             clusters.map((cluster) => {
               return dbApi
                 .dbInsert(
@@ -1250,10 +1251,10 @@ function insertDeviceTypes(db, packageId, data) {
  * @param {*} dtClusterRefDataPairs
  */
 function insertDeviceTypeAttributes(db, dtClusterRefDataPairs) {
-  var attributes = []
+  let attributes = []
   dtClusterRefDataPairs.map((dtClusterRefDataPair) => {
-    var dtClusterRef = dtClusterRefDataPair.dtClusterRef
-    var clusterData = dtClusterRefDataPair.clusterData
+    let dtClusterRef = dtClusterRefDataPair.dtClusterRef
+    let clusterData = dtClusterRefDataPair.clusterData
     if ('requiredAttributes' in clusterData) {
       clusterData.requiredAttributes.forEach((attributeName) => {
         attributes.push([dtClusterRef, attributeName])
@@ -1274,10 +1275,10 @@ function insertDeviceTypeAttributes(db, dtClusterRefDataPairs) {
  * @param {*} dtClusterRefDataPairs
  */
 function insertDeviceTypeCommands(db, dtClusterRefDataPairs) {
-  var commands = []
+  let commands = []
   dtClusterRefDataPairs.map((dtClusterRefDataPair) => {
-    var dtClusterRef = dtClusterRefDataPair.dtClusterRef
-    var clusterData = dtClusterRefDataPair.clusterData
+    let dtClusterRef = dtClusterRefDataPair.dtClusterRef
+    let clusterData = dtClusterRefDataPair.clusterData
     if ('requiredCommands' in clusterData) {
       clusterData.requiredCommands.forEach((commandName) => {
         commands.push([dtClusterRef, commandName])
@@ -1318,10 +1319,20 @@ UPDATE
 SET
   ATTRIBUTE_REF =
   ( SELECT
-      ATTRIBUTE.ATTRIBUTE_ID
+      ATTRIBUTE_ID
     FROM
       ATTRIBUTE
-    WHERE upper(ATTRIBUTE.DEFINE) = upper(DEVICE_TYPE_ATTRIBUTE.ATTRIBUTE_NAME)
+    WHERE
+      upper(ATTRIBUTE.DEFINE) = upper(DEVICE_TYPE_ATTRIBUTE.ATTRIBUTE_NAME)
+    AND
+      ATTRIBUTE.CLUSTER_REF =
+      ( SELECT
+          DEVICE_TYPE_CLUSTER.CLUSTER_REF
+        FROM
+          DEVICE_TYPE_CLUSTER
+        WHERE
+          DEVICE_TYPE_CLUSTER_ID = DEVICE_TYPE_ATTRIBUTE.DEVICE_TYPE_CLUSTER_REF
+      )
   )`,
     []
   )
@@ -1336,10 +1347,19 @@ UPDATE
 SET
   COMMAND_REF =
   ( SELECT
-      COMMAND.COMMAND_ID
+      COMMAND_ID
     FROM
       COMMAND
     WHERE upper(COMMAND.NAME) = upper(DEVICE_TYPE_COMMAND.COMMAND_NAME)
+    AND
+      COMMAND.CLUSTER_REF =
+      ( SELECT
+          DEVICE_TYPE_CLUSTER.CLUSTER_REF
+        FROM
+          DEVICE_TYPE_CLUSTER
+        WHERE
+          DEVICE_TYPE_CLUSTER_ID = DEVICE_TYPE_COMMAND.DEVICE_TYPE_CLUSTER_REF
+      )
   )`,
     []
   )
@@ -1387,12 +1407,12 @@ function insertStructs(db, packageId, data) {
       })
     )
     .then((lastIdsArray) => {
-      var i
-      var itemsToLoad = []
+      let i
+      let itemsToLoad = []
       for (i = 0; i < lastIdsArray.length; i++) {
         if ('items' in data[i]) {
-          var lastId = lastIdsArray[i]
-          var items = data[i].items
+          let lastId = lastIdsArray[i]
+          let items = data[i].items
           itemsToLoad.push(
             ...items.map((item) => [lastId, item.name, item.type])
           )
@@ -1425,12 +1445,12 @@ function insertEnums(db, packageId, data) {
       })
     )
     .then((lastIdsArray) => {
-      var i
-      var itemsToLoad = []
+      let i
+      let itemsToLoad = []
       for (i = 0; i < lastIdsArray.length; i++) {
         if ('items' in data[i]) {
-          var lastId = lastIdsArray[i]
-          var items = data[i].items
+          let lastId = lastIdsArray[i]
+          let items = data[i].items
           itemsToLoad.push(
             ...items.map((item) => [lastId, item.name, item.value])
           )
@@ -1546,12 +1566,12 @@ function insertBitmaps(db, packageId, data) {
       data.map((bm) => [packageId, bm.name, bm.type])
     )
     .then((lastIdsArray) => {
-      var i
-      var fieldsToLoad = []
+      let i
+      let fieldsToLoad = []
       for (i = 0; i < lastIdsArray.length; i++) {
         if ('fields' in data[i]) {
-          var lastId = lastIdsArray[i]
-          var fields = data[i].fields
+          let lastId = lastIdsArray[i]
+          let fields = data[i].fields
           fieldsToLoad.push(
             ...fields.map((field) => [lastId, field.name, field.mask])
           )
@@ -1574,8 +1594,8 @@ function insertBitmaps(db, packageId, data) {
  * and endpoint id references
  */
 function exportClustersAndEndpointDetailsFromEndpointTypes(db, endpointTypes) {
-  var endpointTypeIds = endpointTypes.map((ep) => ep.endpointTypeId).toString()
-  var mapFunction = (x) => {
+  let endpointTypeIds = endpointTypes.map((ep) => ep.endpointTypeId).toString()
+  let mapFunction = (x) => {
     return {
       endpointId: x.ENDPOINT_TYPE_REF,
       endpointClusterId: x.ENDPOINT_TYPE_CLUSTER_ID,
@@ -1608,13 +1628,13 @@ function exportCommandDetailsFromAllEndpointTypesAndClusters(
   db,
   endpointsAndClusters
 ) {
-  var endpointTypeIds = endpointsAndClusters
+  let endpointTypeIds = endpointsAndClusters
     .map((ep) => ep.endpointId)
     .toString()
-  var endpointClusterIds = endpointsAndClusters
+  let endpointClusterIds = endpointsAndClusters
     .map((ep) => ep.endpointClusterId)
     .toString()
-  var mapFunction = (x) => {
+  let mapFunction = (x) => {
     return {
       id: x.COMMAND_ID,
       name: x.NAME,
@@ -1769,8 +1789,8 @@ function determineType(db, type, packageId) {
  * @returns Promise that resolves with the data that should go into the external form.
  */
 function exportAllClustersDetailsFromEndpointTypes(db, endpointTypes) {
-  var endpointTypeIds = endpointTypes.map((ep) => ep.endpointTypeId).toString()
-  var mapFunction = (x) => {
+  let endpointTypeIds = endpointTypes.map((ep) => ep.endpointTypeId).toString()
+  let mapFunction = (x) => {
     return {
       id: x.CLUSTER_ID,
       name: x.NAME,
@@ -1818,8 +1838,8 @@ function exportCommandDetailsFromAllEndpointTypeCluster(
   endpointTypes,
   endpointClusterId
 ) {
-  var endpointTypeIds = endpointTypes.map((ep) => ep.endpointTypeId).toString()
-  var mapFunction = (x) => {
+  let endpointTypeIds = endpointTypes.map((ep) => ep.endpointTypeId).toString()
+  let mapFunction = (x) => {
     return {
       id: x.COMMAND_ID,
       name: x.NAME,
