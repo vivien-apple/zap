@@ -27,7 +27,7 @@ applicable to this document can be found in the LICENSE.md file.
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
 				<field name="Status" type="zclStatus" />
-				<field name="Atttribute" type="anyType" presentIf="Status=0" />
+				<field name="Attribute" type="anyType" presentIf="Status=0" />
 			</type:sequence>
 		</restriction>
 	</type:type>
@@ -104,7 +104,7 @@ applicable to this document can be found in the LICENSE.md file.
 		</restriction>	
 	</type:type>
 	
-	<type:type id="ff" short="attributeReportRecord" name="Atttribute Report Record">
+	<type:type id="ff" short="attributeReportRecord" name="Attribute Report Record">
 		<restriction>
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
@@ -113,7 +113,7 @@ applicable to this document can be found in the LICENSE.md file.
 		</restriction>
 	</type:type>
 	
-	<type:type id="ff" short="discoverAtttributesResponseRecord" name="Discover Attributes Response Record">
+	<type:type id="ff" short="discoverAttributesResponseRecord" name="Discover Attributes Response Record">
 		<restriction>
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
@@ -122,7 +122,7 @@ applicable to this document can be found in the LICENSE.md file.
 		</restriction>
 	</type:type>
 	
-	<type:type id="ff" short="readStructuredRecord" name="Read Atttributes Structured Record">
+	<type:type id="ff" short="readStructuredRecord" name="Read Attributes Structured Record">
 		<restriction>
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
@@ -151,7 +151,7 @@ applicable to this document can be found in the LICENSE.md file.
 		</restriction>
 	</type:type>
 	
-	<type:type id="ff" short="discoverAtttributesExtendedResponseRecord" name="Discover Attributes Extended Response Record">
+	<type:type id="ff" short="discoverAttributesExtendedResponseRecord" name="Discover Attributes Extended Response Record">
 		<restriction>
 			<type:sequence>
 				<field name="AttributeIdentifier" type="attribId" />
@@ -243,7 +243,7 @@ applicable to this document can be found in the LICENSE.md file.
 		<command id="0d" name="DiscoverAttributesResponse" required="true">
 			<fields>
 				<field name="DiscoveryComplete" type="bool" />
-				<field name="AttributeRecord" type="discoverAtttributesResponseRecord" array="true" arrayLengthSize="0" />
+				<field name="AttributeRecord" type="discoverAttributesResponseRecord" array="true" arrayLengthSize="0" />
 			</fields>
 		</command>
 		<command id="0e" name="ReadAttributesStructured" required="false">
@@ -294,7 +294,7 @@ applicable to this document can be found in the LICENSE.md file.
 		<command id="16" name="DiscoverAttributesExtendedResponse" required="false">
 			<fields>
 				<field name="DiscoveryComplete" type="bool" />
-				<field name="AttributeRecord" type="discoverAtttributesExtendedResponseRecord" array="true" arrayLengthSize="0" />
+				<field name="AttributeRecord" type="discoverAttributesExtendedResponseRecord" array="true" arrayLengthSize="0" />
 			</fields>
 		</command>
 	</commands>
