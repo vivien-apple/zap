@@ -738,7 +738,7 @@ applicable to this document can be found in the LICENSE.md file.
     <name>custom</name>
     <domain>CHIP</domain>
     <typeName>Custom...</typeName>
-    <deviceId revision="1" editable="false">0x0000</deviceId>
+    <deviceId revision="1" editable="false">0xFFFF</deviceId>
     <clusters lockOthers="true">
       <include cluster="BarrierControl" client="false" server="true" clientLocked="true" serverLocked="true">
         <requireCommand>GoToPercent</requireCommand>
@@ -746,18 +746,7 @@ applicable to this document can be found in the LICENSE.md file.
       </include>
       <include cluster="Basic" client="false" server="true" clientLocked="true" serverLocked="true">
         <requireAttribute>ZCLVersion</requireAttribute>
-        <requireAttribute>ApplicationVersion</requireAttribute>
-        <requireAttribute>StackVersion</requireAttribute>
-        <requireAttribute>HWVersion</requireAttribute>
-        <requireAttribute>ManufacturerName</requireAttribute>
-        <requireAttribute>ModelIdentifier</requireAttribute>
-        <requireAttribute>DateCode</requireAttribute>
         <requireAttribute>PowerSource</requireAttribute>
-        <requireAttribute>GenericDevice-Class</requireAttribute>
-        <requireAttribute>GenericDevice-Type</requireAttribute>
-        <requireAttribute>ProductCode</requireAttribute>
-        <requireAttribute>ProductURL</requireAttribute>
-        <requireAttribute>SWBuildID</requireAttribute>
         <requireCommand>ResetToFactoryDefaults</requireCommand>
       </include>
       <include cluster="ColorControl" client="false" server="true" clientLocked="true" serverLocked="true">
@@ -876,7 +865,17 @@ applicable to this document can be found in the LICENSE.md file.
         <requireCommand>Identify</requireCommand>
         <requireCommand>IdentifyQuery</requireCommand>
       </include>
-      <include cluster="Level" client="false" server="true" clientLocked="true" serverLocked="true"/>
+      <include cluster="Level" client="false" server="true" clientLocked="true" serverLocked="true">
+        <requireAttribute>CurrentLevel</requireAttribute>
+        <requireCommand>MoveToLevel</requireCommand>
+        <requireCommand>Move</requireCommand>
+        <requireCommand>Step</requireCommand>
+        <requireCommand>Stop</requireCommand>
+        <requireCommand>MoveToLevelWithOnOff</requireCommand>
+        <requireCommand>MoveWithOnOff</requireCommand>
+        <requireCommand>StepWithOnOff</requireCommand>
+        <requireCommand>StopWithOnOff</requireCommand>
+      </include>
       <include cluster="OnOff" client="false" server="true" clientLocked="true" serverLocked="true">
         <requireAttribute>OnOff</requireAttribute>
         <requireCommand>Off</requireCommand>
