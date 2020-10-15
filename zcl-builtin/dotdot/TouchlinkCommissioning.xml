@@ -54,7 +54,7 @@ applicable to this document can be found in the LICENSE.md file.
       <type:sequence>
         <field name="IEEEAddress" type="EUI64" />
         <field name="EndpointIdentifier" type="uint8" />
-        <field name="ProfileIndentifier" type="uint16" />
+        <field name="ProfileIdentifier" type="uint16" />
         <field name="DeviceIdentifier" type="uint16" />
         <field name="Version" type="TLVersion" />
         <field name="GroupIdentifierCount" type="uint8" />
