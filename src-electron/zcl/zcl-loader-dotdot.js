@@ -225,6 +225,11 @@ function prepareCommands(commands, side) {
             name: f.$.name,
             type: f.$.type,
             isArray: f.$.array,
+            presentIf: (f.$.presentIf || '')
+              .replace('!=', '###')
+              .replace('=', '==')
+              .replace('###', '!=')
+              .replace('Status', 'status'),
           })
         }
       })
@@ -385,6 +390,11 @@ function prepareStruct(type) {
         ret.items.push({
           name: field.$.name,
           type: field.$.type,
+          presentIf: (field.$.presentIf || '')
+            .replace('!=', '###')
+            .replace('=', '==')
+            .replace('###', '!=')
+            .replace('Status', 'status'),
         })
       })
     })
