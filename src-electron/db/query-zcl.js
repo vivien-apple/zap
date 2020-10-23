@@ -220,7 +220,7 @@ function selectAllStructItemsById(db, id) {
   return dbApi
     .dbAll(
       db,
-      'SELECT NAME, TYPE, STRUCT_REF FROM STRUCT_ITEM WHERE STRUCT_REF = ?',
+      'SELECT NAME, TYPE, STRUCT_REF, PRESENT_IF FROM STRUCT_ITEM WHERE STRUCT_REF = ?',
       [id]
     )
     .then((rows) => rows.map(dbMapping.map.structItem))
@@ -573,7 +573,7 @@ function selectAllCommandArguments(db) {
   return dbApi
     .dbAll(
       db,
-      `SELECT COMMAND_REF, NAME, TYPE, IS_ARRAY FROM COMMAND_ARG ORDER BY COMMAND_REF`,
+      `SELECT COMMAND_REF, NAME, TYPE, IS_ARRAY, PRESENT_IF FROM COMMAND_ARG ORDER BY COMMAND_REF`,
       []
     )
     .then((rows) => rows.map(dbMapping.map.commandArgument))
@@ -878,13 +878,19 @@ function insertGlobals(db, packageId, data) {
         let args = argsForCommands[j]
         if (args != undefined && args != null) {
           argsToLoad.push(
-            ...args.map((arg) => [lastCmdId, arg.name, arg.type, arg.isArray])
+            ...args.map((arg) => [
+              lastCmdId,
+              arg.name,
+              arg.type,
+              arg.isArray,
+              arg.presentIf,
+            ])
           )
         }
       }
       return dbApi.dbMultiInsert(
         db,
-        'INSERT INTO COMMAND_ARG (COMMAND_REF, NAME, TYPE, IS_ARRAY) VALUES (?,?,?,?)',
+        'INSERT INTO COMMAND_ARG (COMMAND_REF, NAME, TYPE, IS_ARRAY, PRESENT_IF) VALUES (?,?,?,?,?)',
         argsToLoad
       )
     })
@@ -996,13 +1002,19 @@ function insertClusterExtensions(db, packageId, data) {
             let args = argsForCommands[j]
             if (args != undefined && args != null) {
               argsToLoad.push(
-                ...args.map((arg) => [lastId, arg.name, arg.type, arg.isArray])
+                ...args.map((arg) => [
+                  lastId,
+                  arg.name,
+                  arg.type,
+                  arg.isArray,
+                  arg.presentIf,
+                ])
               )
             }
           }
           return dbApi.dbMultiInsert(
             db,
-            'INSERT INTO COMMAND_ARG (COMMAND_REF, NAME, TYPE, IS_ARRAY) VALUES (?,?,?,?)',
+            'INSERT INTO COMMAND_ARG (COMMAND_REF, NAME, TYPE, IS_ARRAY, PRESENT_IF) VALUES (?,?,?,?,?)',
             argsToLoad
           )
         })
@@ -1156,13 +1168,14 @@ function insertClusters(db, packageId, data) {
                   arg.name,
                   arg.type,
                   arg.isArray,
+                  arg.presentIf,
                 ])
               )
             }
           }
           return dbApi.dbMultiInsert(
             db,
-            'INSERT INTO COMMAND_ARG (COMMAND_REF, NAME, TYPE, IS_ARRAY) VALUES (?,?,?,?)',
+            'INSERT INTO COMMAND_ARG (COMMAND_REF, NAME, TYPE, IS_ARRAY, PRESENT_IF) VALUES (?,?,?,?,?)',
             argsToLoad
           )
         })
@@ -1414,13 +1427,18 @@ function insertStructs(db, packageId, data) {
           let lastId = lastIdsArray[i]
           let items = data[i].items
           itemsToLoad.push(
-            ...items.map((item) => [lastId, item.name, item.type])
+            ...items.map((item) => [
+              lastId,
+              item.name,
+              item.type,
+              item.presentIf,
+            ])
           )
         }
       }
       return dbApi.dbMultiInsert(
         db,
-        'INSERT INTO STRUCT_ITEM (STRUCT_REF, NAME, TYPE) VALUES (?,?,?)',
+        'INSERT INTO STRUCT_ITEM (STRUCT_REF, NAME, TYPE, PRESENT_IF) VALUES (?,?,?,?)',
         itemsToLoad
       )
     })
@@ -1718,7 +1736,8 @@ SELECT
   COMMAND_REF,
   NAME,
   TYPE,
-  IS_ARRAY
+  IS_ARRAY,
+  PRESENT_IF
 FROM COMMAND_ARG WHERE COMMAND_REF = ? `,
       [commandId]
     )

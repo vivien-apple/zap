@@ -114,6 +114,7 @@ exports.map = {
       type: x.TYPE,
       code: x.CODE,
       isArray: x.IS_ARRAY,
+      presentIf: x.PRESENT_IF,
       caption: `Command argument of type ${x.TYPE}`,
     }
   },
@@ -162,6 +163,7 @@ exports.map = {
       label: x.NAME,
       structRef: x.STRUCT_REF,
       type: x.TYPE,
+      presentIf: x.PRESENT_IF,
       caption: `Struct Item of type ${x.TYPE}`,
     }
   },
