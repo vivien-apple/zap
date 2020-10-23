@@ -38,6 +38,7 @@ applicable to this document can be found in the LICENSE.md file.
       </command>
       <command id="02" name="GetGroupMembership" required="true">
         <fields>
+          <field name="GroupCount" type="uint8" />
           <field name="GroupList" type="uint16" array="true" />
         </fields>
       </command>
@@ -79,6 +80,7 @@ applicable to this document can be found in the LICENSE.md file.
       <command id="02" name="GetGroupMembershipResponse" required="true">
         <fields>
           <field name="Capacity" type="uint8" />
+          <field name="GroupCount" type="uint8" />
           <field name="GroupList" type="uint16" array="true" />
         </fields>
       </command>
