@@ -740,6 +740,8 @@ applicable to this document can be found in the LICENSE.md file.
     <typeName>Custom...</typeName>
     <deviceId revision="1" editable="false">0xFFFF</deviceId>
     <clusters lockOthers="true">
+      <include cluster="IASZone" client="false" server="true" clientLocked="true" serverLocked="true">
+      </include>
       <include cluster="BarrierControl" client="false" server="true" clientLocked="true" serverLocked="true">
         <requireCommand>GoToPercent</requireCommand>
         <requireCommand>Stop</requireCommand>
@@ -810,8 +812,6 @@ applicable to this document can be found in the LICENSE.md file.
         <requireCommand>UnlockDoor</requireCommand>
         <requireCommand>UnlockWithTimeout</requireCommand>
         <requireCommand>UnlockWithTimeoutResponse</requireCommand>
-        <requireCommand>GetLogRecord</requireCommand>
-        <requireCommand>GetLogRecordResponse</requireCommand>
         <requireCommand>SetPINCode</requireCommand>
         <requireCommand>SetPINCodeResponse</requireCommand>
         <requireCommand>GetPINCode</requireCommand>
@@ -895,12 +895,6 @@ applicable to this document can be found in the LICENSE.md file.
         <requireCommand>StoreScene</requireCommand>
         <requireCommand>RecallScene</requireCommand>
         <requireCommand>GetSceneMembership</requireCommand>
-        <requireCommand>EnhancedAddScene</requireCommand>
-        <requireCommand>EnhancedAddSceneResponse</requireCommand>
-        <requireCommand>EnhancedViewScene</requireCommand>
-        <requireCommand>EnhancedViewSceneResponse</requireCommand>
-        <requireCommand>CopyScene</requireCommand>
-        <requireCommand>CopySceneResponse</requireCommand>
       </include>
       <include cluster="TemperatureMeasurement" client="false" server="true" clientLocked="false" serverLocked="true"/>
     </clusters>
